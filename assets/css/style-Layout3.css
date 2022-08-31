@@ -1,14 +1,109 @@
+
 .layout3 {
 
     margin-top: 69px;
-    background-color: green;
+    /*background-color: green;*/
     width: 100%;
 
 }
 
-.layout3 > button {
+.layout3 button {
 
-    width: 100px;
-    height: 100px;
+    background-color: #EC362D;
+    color: #fff5f4;
 
+    height: 54px;
+
+    padding: 0 30px;
+    margin-top: 53px;
+    margin-bottom: 15px;
+    
+    border-radius: 15px;
+
+}
+
+section{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.layout3 .titulo{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+
+    margin: 63px 0 43px 0;
+
+}
+
+.card{
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 600px;
+    padding: 13px 0;
+    margin: 12px 20px;
+}
+
+.qtd-card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qtd-card ion-icon{
+    padding-right: 15px;
+}
+
+input{
+    width: 564px;
+    height: 46px;
+    margin: 7px;
+
+}
+
+input::placeholder{
+    font-style: italic;
+    
+}
+
+.card p{
+    
+    font-weight: 700;
+    align-self: flex-start;
+    margin: 12px;
+
+}
+
+.bloco-resposta{
+    margin: 12px;
+}
+
+.finalizou-quizz h2{
+    font-size: 21px;
+    color: #818181;
+}
+.image-container{
+    text-align: center;
+    
+    position: relative;
+}
+
+.image-container p{
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+
+    position: absolute;
+
+
+    bottom: 10px;
+    left: 3px;
 }
