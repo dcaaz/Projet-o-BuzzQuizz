@@ -6,12 +6,230 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BuzzQuizz</title>
 
-    <link rel="stylesheet" href="resete.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style-Layout1.css" />
+    <link rel="stylesheet" href="./assets/css/style-Layout2.css" />
+    <link rel="stylesheet" href="./assets/css/style-Layout3.css" />
+    <link rel="stylesheet" href="./assets/css/styleGeral.css" />
 </head>
 
 <body>
     <script src="script.js"></script>
 </body>
+=======
+
+<body>
+
+    <!-- Topo da página-->
+    <header>
+
+        <p> BuzzQuizz </p>
+
+    </header>
+
+    <!-- Layout 1 -->
+    <div class="layout1">
+
+
+        <main>
+
+            <div class="seusQuizzesVazio ">
+
+                <p>Você não criou nenhum quizz ainda :(</p>
+                <button onclick="novoQuizz()">Criar Quizz</button>
+
+            </div>
+
+
+
+            <div class="seusQuizzesCompleto esconde">
+
+                <div class="textoSuperior">
+                    <span>Seus Quizzes</span>
+                    <ion-icon name="add-circle" onclick="novoQuizz()"></ion-icon>
+                </div>
+
+                <div class="quizz">
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="outrosQuizzes">
+
+                <p>Todos os Quizzes</p>
+
+                <div class="quizz">
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                    <div class="umQuizz" onclick="entrarNoQuizz()">
+                        <img src="./assets/image/download.jpeg" alt="">
+                        <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- Layout 2 -->
+    <div class="layout2 esconde">
+
+        <div class="questionamento-quiz">
+            <p>O quão Potterhead é você?</p>
+        </div>
+
+        <div class="conteudo">
+
+            <div class="pergunta azul">
+                <p>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+            </div>
+
+            <div class="alternativas-quizz">
+
+                <div class="alternativa">
+                    <img src="./assets/image/gato.png" alt="">
+                    <p>Gatineo</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/rato.png" alt="">
+                    <p>Ratata</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/sapo.png" alt="">
+                    <p>Sapo gordo</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/mustela.png" alt="">
+                    <p>Mustela putorius (o Furão)</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="conteudo">
+
+            <div class="pergunta roxo">
+                <p>Qual dos objetos abaixo NÃO é uma horcrux?</p>
+            </div>
+
+            <div class="alternativas-quizz">
+
+                <div class="alternativa">
+                    <img src="./assets/image/harry.png" alt="">
+                    <p>The boy who lived</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/livro.png" alt="">
+                    <p>O livro monstruoso dos monstros</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/anel.png" alt="">
+                    <p>Anel velho</p>
+                </div>
+
+                <div class="alternativa">
+                    <img src="./assets/image/aguia.png" alt="">
+                    <p>Diadema da Ravenclaw</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="conteudo-acertos">
+
+            <div class="porcentagem">
+                <p>88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+            </div>
+
+            <div class="acerto-img">
+                <img src="./assets/image/bem-vindo.png" alt="">
+                <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
+                    abaixo para usar o vira-tempo e reiniciar este teste.</p>
+            </div>
+
+        </div>
+
+        <div class="botoes">
+
+            <button class="reiniciar-quizz" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+            <button class="voltar-home" onclick="retornarAoLayoutDoisPAraUm()">Voltar para home</button>
+
+        </div>
+
+    </div> <!-- fecha layout2 -->
+
+
+
+    <!-- Layout 3 -->
+    <div class="layout3 esconde">
+
+        <button onclick="retornarAoLayoutTresParaUm()">Voltar na primeira página</button>
+
+    </div>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./assets/javascript/script-Layout1.js"></script>
+    <script src="./assets/javascript/script-Layout2.js"></script>
+    <script src="./assets/javascript/script-Layout3.js"></script>
+
+</body>
+>>>>>>> 29ff1a62c8712a9aaef821e0e95150efa7952524
 
 </html>
