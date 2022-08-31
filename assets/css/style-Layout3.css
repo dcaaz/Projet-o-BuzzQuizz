@@ -1,15 +1,14 @@
-.layout2 {
+.layout3 {
 
+    margin-top: 69px;
+    background-color: green;
     width: 100%;
-    height: 100%;
-    background-color: blue;
 
 }
 
-.layout3 {
+.layout3 > button {
 
-    width: 100%;
-    height: 100%;
-    background-color: green;
+    width: 100px;
+    height: 100px;
 
 }

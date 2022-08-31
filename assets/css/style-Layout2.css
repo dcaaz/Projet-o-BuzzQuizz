@@ -1,0 +1,14 @@
+.layout2 {
+
+    margin-top: 69px;
+    background-color: blue;
+    width: 100%;
+
+}
+
+.layout2 > button {
+
+    width: 100px;
+    height: 100px;
+
+}

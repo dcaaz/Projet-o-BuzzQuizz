@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BuzzQuizz</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BuzzQuizz</title>
 
-    <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style-Layout1.css" />
-    <link rel="stylesheet" href="./assets/css/style-Layout2.css" />
-    <link rel="stylesheet" href="./assets/css/style-Layout3.css" />
-    <link rel="stylesheet" href="./assets/css/styleGeral.css" />
-</head>
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/css/style-Layout1.css" />
+        <link rel="stylesheet" href="./assets/css/style-Layout2.css" />
+        <link rel="stylesheet" href="./assets/css/style-Layout3.css" />
+        <link rel="stylesheet" href="./assets/css/styleGeral.css" />
+    </head>
 
     <body>
 
@@ -34,7 +34,7 @@
                 <div class="seusQuizzesVazio ">
                         
                     <p>Você não criou nenhum quizz ainda :(</p>
-                    <button>Criar Quizz</button>
+                    <button onclick="novoQuizz()" >Criar Quizz</button>
                 
                 </div>
 
@@ -44,17 +44,17 @@
 
                     <div class="textoSuperior">
                         <span>Seus Quizzes</span>
-                        <ion-icon name="add-circle"></ion-icon>
+                        <ion-icon name="add-circle" onclick="novoQuizz()"></ion-icon>
                     </div>
 
                     <div class="quizz">
                         
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
@@ -70,32 +70,32 @@
 
                     <div class="quizz">
                         
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
-                        <div class="umQuizz">
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
                             <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
@@ -112,17 +112,23 @@
 
         <!-- Layout 2 -->
         <div class="layout2 esconde">
-            a
+
+            <button onclick="retornarAoLayoutDoisPAraUm()" >Voltar na primeira página</button>
+        
         </div>
 
         <!-- Layout 3 -->
         <div class="layout3 esconde">
-            a
+        
+            <button onclick="retornarAoLayoutTresParaUm()" >Voltar na primeira página</button>
+        
         </div>
         
     </body>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="./assets/javascript/script.js"></script>
+    <script src="./assets/javascript/script-Layout1.js"></script>
+    <script src="./assets/javascript/script-Layout2.js"></script>
+    <script src="./assets/javascript/script-Layout3.js"></script>
 
 </html>
