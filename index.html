@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
+
     <head>
     
         <meta charset="UTF-8" />
@@ -18,29 +19,30 @@
     
     </head>
 
+
     <body>
 
         <!-- Topo da página-->
         <header>
-            
+                
             <p> BuzzQuizz </p>
-            
+
         </header>
 
         <!-- Layout 1 -->
-        <div class="layout1 ">
-            
+        <div class="layout1">
+
 
             <main>
 
                 <div class="seusQuizzesVazio ">
-                        
+
                     <p>Você não criou nenhum quizz ainda :(</p>
-                    <button onclick="novoQuizz()" >Criar Quizz</button>
-                
+                    <button onclick="novoQuizz()">Criar Quizz</button>
+
                 </div>
 
-                
+
 
                 <div class="seusQuizzesCompleto esconde">
 
@@ -50,133 +52,204 @@
                     </div>
 
                     <div class="quizz">
-                        
+
                         <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
 
                         <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
                             <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
                         </div>
-                    
+
                     </div>
 
                 </div>
+
 
 
                 <div class="outrosQuizzes">
-                    
+
                     <p>Todos os Quizzes</p>
 
                     <div class="quizz">
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
+                        <div class="umQuizz" onclick="entrarNoQuizz()">
+                            <img src="./assets/image/download.jpeg" alt="">
+                            <div class="nomeDoQuizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                        </div>
+
                     </div>
-
                 </div>
-
             </main>
-
         </div>
-
-
 
         <!-- Layout 2 -->
         <div class="layout2 esconde">
 
-            <button onclick="retornarAoLayoutDoisPAraUm()" >Voltar na primeira página</button>
-        
-        </div>
+            <div class="questionamento-quiz">
+                <p>O quão Potterhead é você?</p>
+            </div>
 
+            <div class="conteudo">
 
+                <div class="pergunta azul">
+                    <p>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                </div>
+
+                <div class="alternativas-quizz">
+
+                    <div class="alternativa">
+                        <img src="./assets/image/gato.png" alt="">
+                        <p>Gatineo</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/rato.png" alt="">
+                        <p>Ratata</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/sapo.png" alt="">
+                        <p>Sapo gordo</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/mustela.png" alt="">
+                        <p>Mustela putorius (o Furão)</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="conteudo">
+
+                <div class="pergunta roxo">
+                    <p>Qual dos objetos abaixo NÃO é uma horcrux?</p>
+                </div>
+
+                <div class="alternativas-quizz">
+
+                    <div class="alternativa">
+                        <img src="./assets/image/harry.png" alt="">
+                        <p>The boy who lived</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/livro.png" alt="">
+                        <p>O livro monstruoso dos monstros</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/anel.png" alt="">
+                        <p>Anel velho</p>
+                    </div>
+
+                    <div class="alternativa">
+                        <img src="./assets/image/aguia.png" alt="">
+                        <p>Diadema da Ravenclaw</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="conteudo-acertos">
+
+                <div class="porcentagem">
+                    <p>88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+                </div>
+
+                <div class="acerto-img">
+                    <img src="./assets/image/bem-vindo.png" alt="">
+                    <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão
+                        abaixo para usar o vira-tempo e reiniciar este teste.</p>
+                </div>
+
+            </div>
+
+            <div class="botoes">
+
+                <button class="reiniciar-quizz" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+                <button class="voltar-home" onclick="retornarAoLayoutDoisPAraUm()">Voltar para home</button>
+
+            </div>
+
+        </div> 
+        <!-- fecha layout2 -->
 
         <!-- Layout 3 -->
         <div class="layout3 esconde">
-        
+
             <main>
-            <!--    <button onclick="retornarAoLayoutTresParaUm()" >Voltar na primeira página</button> -->
-                <section class="nome-quizz esconde">
+                <!--    <button onclick="retornarAoLayoutTresParaUm()" >Voltar na primeira página</button> -->
+                    <section class="nome-quizz esconde">
 
-                    <div class="titulo">
-                        <h1>Comece pelo começo</h1>
-                    </div>
-                    
-                    <div class="card">
-                        
-                        <input type="text" placeholder="Título do seu quizz">
-                        <input type="text" placeholder="URL da imagem do seu quizz">
-                        <input type="text" placeholder="Quantidade de perguntas do quizz">
-                        <input type="text" placeholder="Quantidade de níveis do quizz">
-                        
-                    </div>
-
-                    <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar perguntas</button>
-                
-                </section>
-
-                <section class="perguntas-quizz esconde">
-                    
-                    <div class="titulo">
-                        <h1>Crie suas perguntas</h1>
-                    </div>
-
-                    <div class="card">
-                        <p>Pergunta 1</p>
-                       
-                        <input type="text" placeholder="Texto da pergunta">
-                        <input type="text" placeholder="Cor de fundo da pergunta">
-
-                        <p>Resposta correta</p>
-                        
-                        <div class="bloco-resposta">
-                            <input type="text" placeholder="Resposta correta">
-                            <input type="text" placeholder="URL da imagem">
+                        <div class="titulo">
+                            <h1>Comece pelo começo</h1>
                         </div>
 
-                        <p>Respostas incorretas</p>
-                        
-                        <div class="bloco-resposta">
-                            <input type="text" placeholder="Resposta incorreta">
-                            <input type="text" placeholder="URL da imagem">
-                        </div>
-                        
-                        <div class="bloco-resposta">
-                            <input type="text" placeholder="Resposta incorreta">
-                            <input type="text" placeholder="URL da imagem">
+                        <div class="card">
+
+                            <input type="text" placeholder="Título do seu quizz">
+                            <input type="text" placeholder="URL da imagem do seu quizz">
+                            <input type="text" placeholder="Quantidade de perguntas do quizz">
+                            <input type="text" placeholder="Quantidade de níveis do quizz">
+
                         </div>
 
-                        <div class="bloco-resposta">
-                            <input type="text" placeholder="Resposta incorreta">
-                            <input type="text" placeholder="URL da imagem">
+                        <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar perguntas</button>
+
+                    </section>
+
+                    <section class="perguntas-quizz esconde">
+
+                        <div class="titulo">
+                            <h1>Crie suas perguntas</h1>
                         </div>
 
-                    </div>
+                        <div class="card">
+                            <p>Pergunta 1</p>
 
-                    <div class="card">
-                        <div class="qtd-card">
-                            <p>Pergunta 2</p>
-                            <ion-icon name="create-outline"></ion-icon>
-                        </div>
+                            <input type="text" placeholder="Texto da pergunta">
+                            <input type="text" placeholder="Cor de fundo da pergunta">
 
-                        <div class="card-content esconde">
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Texto da pergunta">
-                                <input type="text" placeholder="Cor de fundo da pergunta">
-                            </div>
-                            
                             <p>Resposta correta</p>
-                            
+
                             <div class="bloco-resposta">
                                 <input type="text" placeholder="Resposta correta">
                                 <input type="text" placeholder="URL da imagem">
                             </div>
 
                             <p>Respostas incorretas</p>
-                            
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta">
-                                <input type="text" placeholder="URL da imagem">
-                            </div>
-                            
+
                             <div class="bloco-resposta">
                                 <input type="text" placeholder="Resposta incorreta">
                                 <input type="text" placeholder="URL da imagem">
@@ -186,137 +259,182 @@
                                 <input type="text" placeholder="Resposta incorreta">
                                 <input type="text" placeholder="URL da imagem">
                             </div>
-                        
+
+                            <div class="bloco-resposta">
+                                <input type="text" placeholder="Resposta incorreta">
+                                <input type="text" placeholder="URL da imagem">
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="card">
+                            <div class="qtd-card">
+                                <p>Pergunta 2</p>
+                                <ion-icon name="create-outline"></ion-icon>
+                            </div>
 
-                    <div class="card">
-                        <div class="qtd-card">
-                            <p>Pergunta 3</p>
-                            <ion-icon name="create-outline"></ion-icon>
+                            <div class="card-content esconde">
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Texto da pergunta">
+                                    <input type="text" placeholder="Cor de fundo da pergunta">
+                                </div>
+
+                                <p>Resposta correta</p>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta correta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <p>Respostas incorretas</p>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div class="card-content esconde">
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Texto da pergunta">
-                                <input type="text" placeholder="Cor de fundo da pergunta">
-                            </div>
-                            
-                            <p>Resposta correta</p>
-                            
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta correta">
-                                <input type="text" placeholder="URL da imagem">
+                        <div class="card">
+                            <div class="qtd-card">
+                                <p>Pergunta 3</p>
+                                <ion-icon name="create-outline"></ion-icon>
                             </div>
 
-                            <p>Respostas incorretas</p>
-                            
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta">
-                                <input type="text" placeholder="URL da imagem">
-                            </div>
-                            
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta">
-                                <input type="text" placeholder="URL da imagem">
+                            <div class="card-content esconde">
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Texto da pergunta">
+                                    <input type="text" placeholder="Cor de fundo da pergunta">
+                                </div>
+
+                                <p>Resposta correta</p>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta correta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <p>Respostas incorretas</p>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
+                                <div class="bloco-resposta">
+                                    <input type="text" placeholder="Resposta incorreta">
+                                    <input type="text" placeholder="URL da imagem">
+                                </div>
+
                             </div>
 
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta">
-                                <input type="text" placeholder="URL da imagem">
-                            </div>
-                        
                         </div>
 
-                    </div>
+                        <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar níveis</button>
 
-                    <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar níveis</button>
-                
-                </section>
+                    </section>
 
-                <section class="nivel-quizz esconde">
+                    <section class="nivel-quizz esconde">
 
-                    <div class="titulo">
-                        <h1>Agora, decida os níveis</h1>
-                    </div>
-                    
-                    <div class="card">
-                        <p>Nível 1</p>
-
-                        <input type="text" placeholder="Título do nível">
-                        <input type="text" placeholder="% de acerto mínima">
-                        <input type="text" placeholder="URL da imagem do nível">
-                        <input type="text" placeholder="Descrição do nível">
-                        
-                    </div>
-
-                    <div class="card ">
-                        <div class="qtd-card">
-                            <p>Nível 2</p>
-                            <ion-icon name="create-outline"></ion-icon>
+                        <div class="titulo">
+                            <h1>Agora, decida os níveis</h1>
                         </div>
-                        
-                        <div class="card-content esconde">
+
+                        <div class="card">
+                            <p>Nível 1</p>
 
                             <input type="text" placeholder="Título do nível">
                             <input type="text" placeholder="% de acerto mínima">
                             <input type="text" placeholder="URL da imagem do nível">
                             <input type="text" placeholder="Descrição do nível">
-                        
-                        </div>
-                    
-                    </div>
 
-                    <div class="card">
-                        <div class="qtd-card">
-                            <p>Nível n..</p>
-                            <ion-icon name="create-outline"></ion-icon>
                         </div>
 
-                        <div class="card-content esconde">
+                        <div class="card ">
+                            <div class="qtd-card">
+                                <p>Nível 2</p>
+                                <ion-icon name="create-outline"></ion-icon>
+                            </div>
 
-                            <input type="text" placeholder="Título do nível">
-                            <input type="text" placeholder="% de acerto mínima">
-                            <input type="text" placeholder="URL da imagem do nível">
-                            <input type="text" placeholder="Descrição do nível">
-                        
+                            <div class="card-content esconde">
+
+                                <input type="text" placeholder="Título do nível">
+                                <input type="text" placeholder="% de acerto mínima">
+                                <input type="text" placeholder="URL da imagem do nível">
+                                <input type="text" placeholder="Descrição do nível">
+
+                            </div>
+
                         </div>
-                        
-                    </div>
 
-                    <button onclick="retornarAoLayoutTresParaUm()" >Finalizar Quizz</button>
-                
-                </section>
+                        <div class="card">
+                            <div class="qtd-card">
+                                <p>Nível n..</p>
+                                <ion-icon name="create-outline"></ion-icon>
+                            </div>
 
-                <section class="finalizou-quizz">
+                            <div class="card-content esconde">
 
-                    <div class="titulo">
-                        <h1>Seu quizz está pronto!</h1>
-                    </div>
+                                <input type="text" placeholder="Título do nível">
+                                <input type="text" placeholder="% de acerto mínima">
+                                <input type="text" placeholder="URL da imagem do nível">
+                                <input type="text" placeholder="Descrição do nível">
 
-                    <div class="image-container">
-                        <img src="./assets/image/download.jpeg">
-                        <p>Nome do seu Quizz</p>
-                    </div>
+                            </div>
 
-                    <button onclick="retornarAoLayoutTresParaUm()" >Acessar Quizz</button>
-                    <h2 onclick="retornarAoLayoutTresParaUm()">Voltar ao Início</h2>
+                        </div>
 
-                </section>
+                        <button onclick="retornarAoLayoutTresParaUm()" >Finalizar Quizz</button>
 
-            </main>
+                    </section>
+
+                    <section class="finalizou-quizz">
+
+                        <div class="titulo">
+                            <h1>Seu quizz está pronto!</h1>
+                        </div>
+
+                        <div class="image-container">
+                            <img src="./assets/image/download.jpeg">
+                            <p>Nome do seu Quizz</p>
+                        </div>
+
+                        <button onclick="retornarAoLayoutTresParaUm()" >Acessar Quizz</button>
+                        <h2 onclick="retornarAoLayoutTresParaUm()">Voltar ao Início</h2>
+
+                    </section>
+
+                </main>
+
         </div>
 
 
 
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./assets/javascript/script-Layout1.js"></script>
         <script src="./assets/javascript/script-Layout2.js"></script>
         <script src="./assets/javascript/script-Layout3.js"></script>
 
     </body>
+
 
 </html>
