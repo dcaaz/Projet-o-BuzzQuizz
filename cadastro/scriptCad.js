@@ -1,4 +1,4 @@
-voltaMenu() => {
+function voltaMenu(){
 
-    window.location.href(../index.html);
-}
+    window.location.replace('../index.html');
+};
