@@ -1,5 +1,8 @@
 let quizzEscolhido = '';
 let totalDePontos = 0;
+let perguntasRespondidas = 0;
+let objetoLevelDeRespostas;
+let objetoPerguntaCompleto;
 
 
 
@@ -17,6 +20,15 @@ function retornarAoLayoutDoisPAraUm() {
 }
 
 function reiniciarQuizz(){
+
+    const respostaDeAcertos = document.querySelector('.layout2 .conteudo-acertos');
+    const botoes = document.querySelector('.layout2 .botoes');
+    
+    respostaDeAcertos.classList.add('esconde');
+    botoes.classList.add('esconde');
+
+    perguntasRespondidas = 0;
+    totalDePontos = 0;
 
     requisitarQuizz();
     const topo = document.querySelector(".layout2 .questionamento-quiz");
@@ -71,32 +83,32 @@ function renderizarQuizz(resposta) {
     
     //Titulo da pergunta
     const localDasPerguntas = document.querySelector('.layout2 .perguntaLayout2');
-    const objeto = objetoQuizzSelecionado[0];
-    const objetoPerguntaCompleto = objeto.questions;
+    objetoLevelDeRespostas = objetoQuizzSelecionado[0].levels;
+    objetoPerguntaCompleto = objetoQuizzSelecionado[0].questions;
 
 
     localDasPerguntas.innerHTML = '';
     for (let i = 0; i < objetoPerguntaCompleto.length; i++) {
         
-            localDasPerguntas.innerHTML += `
-                
-                <div class="conteudo">
-                
-                    <div class="pergunta azul">
-                        
-                        <p>${objetoPerguntaCompleto[i].title}</p>
-    
-                    </div>
-
-                    <div class="alternativas-quizz">
-
-                        ${alternativas(objetoPerguntaCompleto[i].answers)}
+        localDasPerguntas.innerHTML += `
+            
+            <div class="conteudo">
+            
+                <div class="pergunta azul">
                     
-                    </div>
+                    <p>${objetoPerguntaCompleto[i].title}</p>
 
                 </div>
-            `;
 
+                <div class="alternativas-quizz">
+
+                    ${alternativas(objetoPerguntaCompleto[i].answers)}
+                
+                </div>
+
+            </div>
+            `;
+            
     };
 
 }
@@ -170,13 +182,16 @@ function selecionarAlternativa (selecionarAlternativa) {
 function comparaResposta(elemento) {
 
     const resposta = elemento.querySelector('.alternativa span');
-    
+
+
     if (resposta.innerHTML === 'true') {
 
         totalDePontos += 100
 
     }
-    console.log(totalDePontos);    
+    console.log(totalDePontos);
+    perguntasRespondidas++;
+    terminarQuizz();
 
 }
 
@@ -185,6 +200,39 @@ function terminarQuizz() {
     const respostaDeAcertos = document.querySelector('.layout2 .conteudo-acertos');
     const botoes = document.querySelector('.layout2 .botoes');
 
-    
+    if( perguntasRespondidas >= objetoPerguntaCompleto.length) {
+        
+        respostaDeAcertos.classList.remove('esconde');
+        botoes.classList.remove('esconde');
+        
+        let pontuacao = calcudoDePercentagem();
+        renderizarPercetagem(pontuacao);
+    }
+
+}
+
+function calcudoDePercentagem() {
+
+    return Math. trunc(totalDePontos / objetoPerguntaCompleto.length)
+
+}
+
+function renderizarPercetagem(pontuacao) {
+    let j = 0;
+    for (let i = 0; i < objetoLevelDeRespostas.length; i++) {
+
+        if (pontuacao <= objetoLevelDeRespostas[i].minValue) {
+            
+            console.log("Passou de nivel");
+
+        } else {
+
+            console.log("Passou de nivel");
+
+        }
+        
+    } 
+
+    console.log(j);
 
 }
