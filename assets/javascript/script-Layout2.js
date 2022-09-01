@@ -1,4 +1,7 @@
 let quizzEscolhido = '';
+let totalDePontos = 0;
+
+
 
 function retornarAoLayoutDoisPAraUm() {
 
@@ -7,6 +10,9 @@ function retornarAoLayoutDoisPAraUm() {
 
     layoutUm.classList.remove('esconde');
     layoutDois.classList.add('esconde');
+
+    const inicio = document.querySelector(".layout1");
+    inicio.scrollIntoView({block:"start"});
 
 }
 
@@ -18,14 +24,14 @@ function reiniciarQuizz(){
 
 }
 
-
-
 function pergarId(quizz) {
 
     quizzEscolhido = quizz;
     requisitarQuizz();
 
 }
+
+
 
 function requisitarQuizz() {
 
@@ -94,6 +100,7 @@ function renderizarQuizz(resposta) {
     };
 
 }
+
 function alternativas(objeto) {
     
     let texto = '';
@@ -101,7 +108,8 @@ function alternativas(objeto) {
     for (let i = 0; i < objeto.length; i++) {
 
         texto += `
-            <div class="alternativa" onclick="selecionarAlternativa(this); verficacaoDeResposta(${objeto[i].isCorrectAnswer})">
+            <div class="alternativa" onclick="selecionarAlternativa(this); comparaResposta(this)">
+                <span class="esconde">${objeto[i].isCorrectAnswer}</span>
                 <img src="${objeto[i].image}" alt="">
                 <p>${objeto[i].text}</p>
             </div>
@@ -123,20 +131,60 @@ function selecionarAlternativa (selecionarAlternativa) {
 
     const alternativas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa img');
     const alternativaSelecionada = selecionarAlternativa.querySelector('.alternativa img');
-    console.log(alternativas);
-    console.log(selecionarAlternativa);
 
     for (let i = 0; i < alternativas.length; i++){
+    
         if (alternativas[i].classList.contains('branco')){
             return 
         }
+    
     }
 
     for (let i = 0; i < alternativas.length; i++){
+    
         if (alternativas[i] !== alternativaSelecionada){
             alternativas[i].classList.add('branco');
         }
+    
     }
 
+    const listaDeRespostas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa span');
+    const textos = selecionarAlternativa.parentNode.querySelectorAll('.alternativa p');
+
+    for (let i = 0; i < listaDeRespostas.length; i++) {
+
+        if (listaDeRespostas[i].innerHTML === 'true') {
+
+            textos[i].classList.add('verde');
+
+        } else {
+
+            textos[i].classList.add('vermelho');
+
+        }
+
+    }
+
+}
+
+function comparaResposta(elemento) {
+
+    const resposta = elemento.querySelector('.alternativa span');
+    
+    if (resposta.innerHTML === 'true') {
+
+        totalDePontos += 100
+
+    }
+    console.log(totalDePontos);    
+
+}
+
+function terminarQuizz() {
+
+    const respostaDeAcertos = document.querySelector('.layout2 .conteudo-acertos');
+    const botoes = document.querySelector('.layout2 .botoes');
+
+    
 
 }
