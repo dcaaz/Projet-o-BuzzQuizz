@@ -7,6 +7,10 @@ let quizzTeste =[];
 //só mudo de secao se as condições forem satisfeitas.
 let mudarSecao = false;
 
+//Quantidade de perguntas passados pelo usuário
+let numPerguntas;
+let numNiveis;
+
 let quizzNovo ={
         title:'',
         image:'',
@@ -24,18 +28,9 @@ let quizzNovo ={
                     {
                         text: '',
                         image: '',
-                        isCorrectAnswer: true
+                        isCorrectAnswer: false
                     },
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: true
-                    }
+
                 ]
             }
         ],
@@ -70,6 +65,8 @@ function retornarAoLayoutTresParaUm() {
 
 function mudaSecao(elemento, proximo, funcao){
     
+    mudarSecao = funcao();
+
     if (mudarSecao){   
         const secaoAtual = document.querySelector(elemento);
         const proximaSecao = document.querySelector(proximo);
@@ -77,7 +74,6 @@ function mudaSecao(elemento, proximo, funcao){
         secaoAtual.classList.add('esconde');
         proximaSecao.classList.remove('esconde');
     }
-    funcao();
 }
 
 
@@ -92,6 +88,9 @@ function resetaCriacao(){
     secaoInicial.classList.remove('esconde');
 }
 
+
+// ----------------------------- inicio da secao nome ------------------------------
+
 //Titulo do quizz
 function validaTitulo(){
     const titulo = document.querySelector('.tituloQuizzNovo');
@@ -101,6 +100,7 @@ function validaTitulo(){
     else{
         quizzNovo.title = titulo.value;
         console.log(quizzNovo.title);
+        return true;
     }
 }
 
@@ -113,15 +113,52 @@ function validaImg(){
     const testaImagem = img.value;
     if(ehImagem(testaImagem)){
         quizzNovo.image = testaImagem;
+        return true;
     }else{
         alert('URL inválida! entre com uma URL de imagem válida')
     }
 }
 
+function validaQtdPerguntas(){
+    const elemento = document.querySelector('.qtdePergQuizzNovo');
+    const qtdPergunta = Number(elemento.value);
+
+    //console.log(qtdPergunta);
+
+    //    não NaN?                    inteiro?           maior que 3?
+    if( !isNaN(qtdPergunta) && qtdPergunta % 1 === 0 && qtdPergunta > 3){
+        numPerguntas = qtdPergunta;
+        return true;
+    }
+    else{
+        alert("Entre com um valor válido para o número de perguntas!");
+    }
+}
+
+function validaQtdNiveis(){
+    const elemento = document.querySelector('.qtdNiveisQuizzNovo');
+    const qtdNiveis = Number(elemento.value);
+    
+    //    não NaN?                     inteiro?           maior que 3?
+    if( !isNaN(qtdNiveis) && qtdNiveis % 1 === 0 && qtdNiveis > 2){
+        numNiveis = qtdNiveis;
+        return true;
+    }
+    else{
+        alert("Entre com um valor válido para o número de Níveis!");
+    }
+}
 
 function nomeQuizz(){
-    validaTitulo();
-    validaImg();
-    //validaQtdPerguntas();
-    //validaQtdNiveis();
+    if(validaTitulo() && validaImg() && validaQtdPerguntas() && validaQtdNiveis()){
+        return true;
+    }
+}
+
+// ----------------------------- fim da secao nome ------------------------------
+//-------------------------------------------------------------------------------
+// ------------------------- inicio da secao perguntas --------------------------
+
+function perguntasQuizz(){
+    
 }
