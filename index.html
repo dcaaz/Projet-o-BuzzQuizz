@@ -83,7 +83,7 @@
         </div>
 
         <!-- Layout 2 -->
-        <div class="layout2">
+        <div class="layout2 esconde">
 
             <div class="questionamento-quiz">
             </div>
@@ -119,11 +119,11 @@
         <!-- fecha layout2 -->
 
         <!-- Layout 3 -->
-        <div class="layout3 esconde">
+        <div class="layout3 ">
 
             <main>
                 <!--    <button onclick="retornarAoLayoutTresParaUm()" >Voltar na primeira página</button> -->
-                    <section class="nome-quizz esconde">
+                    <section class="nome-quizz ">
 
                         <div class="titulo">
                             <h1>Comece pelo começo</h1>
@@ -131,14 +131,14 @@
 
                         <div class="card">
 
-                            <input type="text" placeholder="Título do seu quizz">
-                            <input type="text" placeholder="URL da imagem do seu quizz">
-                            <input type="text" placeholder="Quantidade de perguntas do quizz">
-                            <input type="text" placeholder="Quantidade de níveis do quizz">
+                            <input type="text" placeholder="Título do seu quizz" class="tituloQuizzNovo">
+                            <input type="text" placeholder="URL da imagem do seu quizz" class="imgQuizzNovo">
+                            <input type="text" placeholder="Quantidade de perguntas do quizz" class="qtdePergQuizzNovo">
+                            <input type="text" placeholder="Quantidade de níveis do quizz" class="qtdNiveisQuizzNovo">
 
                         </div>
 
-                        <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar perguntas</button>
+                        <button onclick="mudaSecao('.nome-quizz', '.perguntas-quizz', nomeQuizz)" >Prosseguir para criar perguntas</button>
 
                     </section>
 
@@ -262,7 +262,7 @@
 
                         </div>
 
-                        <button onclick="retornarAoLayoutTresParaUm()" >Prosseguir para criar níveis</button>
+                        <button onclick="mudaSecao('.perguntas-quizz','.nivel-quizz')" >Prosseguir para criar níveis</button>
 
                     </section>
 
@@ -316,11 +316,11 @@
 
                         </div>
 
-                        <button onclick="retornarAoLayoutTresParaUm()" >Finalizar Quizz</button>
+                        <button onclick="mudaSecao('.nivel-quizz','.finalizou-quizz')" >Finalizar Quizz</button>
 
                     </section>
 
-                    <section class="finalizou-quizz">
+                    <section class="finalizou-quizz esconde">
 
                         <div class="titulo">
                             <h1>Seu quizz está pronto!</h1>
