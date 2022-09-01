@@ -39,18 +39,15 @@ function renderizarQuizzes(promessa) {
 
     const quizzes = promessa.data;
     
-     console.log(quizzes);
     const quizzDaNet = document.querySelector('.outrosQuizzes .quizz');
-    console.log(quizzDaNet);
 
     quizzDaNet.innerHTML = '';
-    
     
     quizzes.forEach(element => {
          
         quizzDaNet.innerHTML += `
         
-            <div class="umQuizz ${element.id}" onclick="entrarNoQuizz()">
+            <div class="umQuizz ${element.id}" onclick="entrarNoQuizz(); pergarId(this)">
                 <div class="degrade"></div>
                 <img src="${element.image}" alt="">
                 <div class="nomeDoQuizz">${element.title}</div>
