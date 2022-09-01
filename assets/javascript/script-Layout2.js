@@ -96,7 +96,7 @@ function alternativas(objeto) {
                 <p>${objeto[i].text}</p>
             </div>
         `
-
+        
     }
 
     return texto;
