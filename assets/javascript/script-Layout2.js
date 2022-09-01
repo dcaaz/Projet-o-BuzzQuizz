@@ -10,6 +10,16 @@ function retornarAoLayoutDoisPAraUm() {
 
 }
 
+function reiniciarQuizz(){
+
+    requisitarQuizz();
+    const topo = document.querySelector(".layout2 .questionamento-quiz");
+    topo.scrollIntoView({block:"start"});
+
+}
+
+
+
 function pergarId(quizz) {
 
     quizzEscolhido = quizz;
@@ -54,7 +64,7 @@ function renderizarQuizz(resposta) {
 
     
     //Titulo da pergunta
-    const localDasPerguntas = document.querySelector('.layout2 .perguntaLayout1');
+    const localDasPerguntas = document.querySelector('.layout2 .perguntaLayout2');
     const objeto = objetoQuizzSelecionado[0];
     const objetoPerguntaCompleto = objeto.questions;
 
@@ -91,7 +101,7 @@ function alternativas(objeto) {
     for (let i = 0; i < objeto.length; i++) {
 
         texto += `
-            <div class="alternativa">
+            <div class="alternativa" onclick="selecionarAlternativa(this); verficacaoDeResposta(${objeto[i].isCorrectAnswer})">
                 <img src="${objeto[i].image}" alt="">
                 <p>${objeto[i].text}</p>
             </div>
@@ -106,5 +116,27 @@ function alternativas(objeto) {
 function trataErroQuizz() {
 
     console.log("Erro")
+
+}
+
+function selecionarAlternativa (selecionarAlternativa) {
+
+    const alternativas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa img');
+    const alternativaSelecionada = selecionarAlternativa.querySelector('.alternativa img');
+    console.log(alternativas);
+    console.log(selecionarAlternativa);
+
+    for (let i = 0; i < alternativas.length; i++){
+        if (alternativas[i].classList.contains('branco')){
+            return 
+        }
+    }
+
+    for (let i = 0; i < alternativas.length; i++){
+        if (alternativas[i] !== alternativaSelecionada){
+            alternativas[i].classList.add('branco');
+        }
+    }
+
 
 }

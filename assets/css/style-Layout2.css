@@ -10,24 +10,29 @@
     justify-content: center;
 }
 
-.perguntaLayout1 {
-
-    background-color: red;
+.perguntaLayout2 {
 
     display: flex;
     flex-direction: column;
     width: 759px;
 
+
 }
 
 .conteudo {
     width: 759px;
-    height: 676px;
+    height: 100%;
     margin-top: 42px;
 
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     
+}
+
+.branco {
+    width: 329.91px;
+    height: 218.61px;
+    opacity: 30%;
 }
 
 /* topo */
@@ -97,10 +102,6 @@
 
 .azul {
     background-color: #434CA0;
-}
-
-.roxo {
-    background-color: #A0438D;
 }
 
 /* todas alternativas */
