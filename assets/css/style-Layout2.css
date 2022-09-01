@@ -1,5 +1,6 @@
 .layout2 {
     width: 100%;
+    height: 100%;
     margin-top: 69px;
     background-color: #E5E5E5;
 
@@ -7,6 +8,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.perguntaLayout1 {
+
+    background-color: red;
+
+    display: flex;
+    flex-direction: column;
+    width: 759px;
+
 }
 
 .conteudo {
@@ -37,8 +48,8 @@
     position: absolute;
     top: 0;
     left: 0;
-
-}
+    
+} 
 
 .questionamento-quiz > img {
 
@@ -96,7 +107,6 @@
 
 .alternativas-quizz {
     width: 100%;
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;

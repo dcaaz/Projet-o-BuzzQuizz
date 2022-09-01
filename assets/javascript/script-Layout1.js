@@ -12,7 +12,6 @@ function novoQuizz() {
 
     const layoutUm = document.querySelector('.layout1');
     const layoutTres = document.querySelector('.layout3');
-    console.log(layoutTres);
     layoutUm.classList.add('esconde');
     layoutTres.classList.remove('esconde');
 
@@ -47,7 +46,7 @@ function renderizarQuizzes(promessa) {
          
         quizzDaNet.innerHTML += `
         
-            <div class="umQuizz ${element.id}" onclick="entrarNoQuizz(); pergarId(this)">
+            <div class="umQuizz" onclick="entrarNoQuizz(); pergarId(${element.id})">
                 <div class="degrade"></div>
                 <img src="${element.image}" alt="">
                 <div class="nomeDoQuizz">${element.title}</div>
