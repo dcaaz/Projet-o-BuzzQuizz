@@ -142,17 +142,17 @@
 
                     </section>
 
-                    <section class="perguntas-quizz ">
+                    <section class="perguntas-quizz">
 
                         <div class="titulo">
                             <h1>Crie suas perguntas</h1>
                         </div>
 
-                        <div class="card">
+                        <div class="card pergunta1">
                             <p>Pergunta 1</p>
 
-                            <input type="text" placeholder="Texto da pergunta">
-                            <input type="text" placeholder="Cor de fundo da pergunta">
+                            <input type="text" placeholder="Texto da pergunta" class="textoPergunta">
+                            <input type="text" placeholder="Cor de fundo da pergunta" class="corFundoPergunta">
 
                             <p>Resposta correta</p>
 
@@ -262,7 +262,7 @@
 
                         </div>
 
-                        <button onclick="mudaSecao('.perguntas-quizz','.nivel-quizz')" >Prosseguir para criar níveis</button>
+                        <button onclick="mudaSecao('.perguntas-quizz','.nivel-quizz',perguntaQuizz('.pergunta1'))" >Prosseguir para criar níveis</button>
 
                     </section>
 
