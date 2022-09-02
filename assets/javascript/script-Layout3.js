@@ -10,6 +10,11 @@ let mudarSecao = false;
 //Quantidade de perguntas passados pelo usuário
 let numPerguntas;
 let numNiveis;
+let resposta = {
+    text: '',
+    image: '',
+    isCorrectAnswer: true
+};
 
 // pergunta (Card 2)
 let pergunta = {
@@ -214,16 +219,32 @@ function checaCorFundo(elemento){
 
 }
 
-/*function checaResposta(elemento){
+function checaResposta(elemento){
     const elementoSelecionado = document.querySelector(elemento);
-    const corFundo = elementoSelecionado.querySelector('.textoResposta');    
+    const texto = elementoSelecionado.querySelector('.textoResposta');
+
+    const img = elementoSelecionado.querySelector('.imgResposta');
+    const testaImagem = img.value;
+    const textoResposta = texto.value;
 
 
-}*/
+    if(textoResposta === ''){
+        alert('Entre com um texto para resposta!');
+        
+    } else if(!(ehImagem(testaImagem))){
+        alert('URL inválida! entre com uma URL de imagem válida para resposta')
+    }else{
+        resposta.text = textoResposta; 
+        resposta.image = testaImagem;
+        return true;
+    }
+
+}
 
 function perguntaQuizz(elemento){
     validaPergunta(elemento);
     checaCorFundo(elemento);
+    checaResposta(elemento);
     //validaRespostas(); //qtde >=2  e possui 1 certa
     //validaImgResposta();
 }
