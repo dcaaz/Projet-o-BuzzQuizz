@@ -1,6 +1,7 @@
 let quizzEscolhido = '';
 let totalDePontos = 0;
 let perguntasRespondidas = 0;
+let proximo = 1;
 let objetoLevelDeRespostas;
 let objetoPerguntaCompleto;
 
@@ -13,6 +14,16 @@ function retornarAoLayoutDoisPAraUm() {
 
     layoutUm.classList.remove('esconde');
     layoutDois.classList.add('esconde');
+
+    const respostaDeAcertos = document.querySelector('.layout2 .conteudo-acertos');
+    const botoes = document.querySelector('.layout2 .botoes');
+    
+    respostaDeAcertos.classList.add('esconde');
+    botoes.classList.add('esconde');
+
+    perguntasRespondidas = 0;
+    totalDePontos = 0;
+    proximo = 1;
 
     const inicio = document.querySelector(".layout1");
     inicio.scrollIntoView({block:"start"});
@@ -29,6 +40,7 @@ function reiniciarQuizz(){
 
     perguntasRespondidas = 0;
     totalDePontos = 0;
+    proximo = 1;
 
     requisitarQuizz();
     const topo = document.querySelector(".layout2 .questionamento-quiz");
@@ -42,8 +54,6 @@ function pergarId(quizz) {
     requisitarQuizz();
 
 }
-
-
 
 function requisitarQuizz() {
 
@@ -86,13 +96,12 @@ function renderizarQuizz(resposta) {
     objetoLevelDeRespostas = objetoQuizzSelecionado[0].levels;
     objetoPerguntaCompleto = objetoQuizzSelecionado[0].questions;
 
-
     localDasPerguntas.innerHTML = '';
     for (let i = 0; i < objetoPerguntaCompleto.length; i++) {
         
         localDasPerguntas.innerHTML += `
             
-            <div class="conteudo">
+            <div class="conteudo titulo${i}">
             
                 <div class="pergunta azul">
                     
@@ -102,7 +111,7 @@ function renderizarQuizz(resposta) {
 
                 <div class="alternativas-quizz">
 
-                    ${alternativas(objetoPerguntaCompleto[i].answers)}
+                    ${alternativas(objetoPerguntaCompleto[i].answers.sort( () => Math.random() - 0.5 ))}
                 
                 </div>
 
@@ -120,7 +129,7 @@ function alternativas(objeto) {
     for (let i = 0; i < objeto.length; i++) {
 
         texto += `
-            <div class="alternativa" onclick="selecionarAlternativa(this); comparaResposta(this)">
+            <div class="alternativa" onclick="comparaResposta(this); selecionarAlternativa(this)">
                 <span class="esconde">${objeto[i].isCorrectAnswer}</span>
                 <img src="${objeto[i].image}" alt="">
                 <p>${objeto[i].text}</p>
@@ -143,11 +152,11 @@ function selecionarAlternativa (selecionarAlternativa) {
 
     const alternativas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa img');
     const alternativaSelecionada = selecionarAlternativa.querySelector('.alternativa img');
-
+    
     for (let i = 0; i < alternativas.length; i++){
     
-        if (alternativas[i].classList.contains('branco')){
-            return 
+        if (alternativas[i].classList.contains('branco') || alternativas[i].classList.contains('selecionado')){
+            return; 
         }
     
     }
@@ -156,6 +165,8 @@ function selecionarAlternativa (selecionarAlternativa) {
     
         if (alternativas[i] !== alternativaSelecionada){
             alternativas[i].classList.add('branco');
+        } else {
+            alternativas[i].classList.add('selecionado');
         }
     
     }
@@ -180,9 +191,15 @@ function selecionarAlternativa (selecionarAlternativa) {
 }
 
 function comparaResposta(elemento) {
-
+    
     const resposta = elemento.querySelector('.alternativa span');
+    const elemente = elemento.querySelector('.alternativa img');
 
+    //selecionado
+    //branco
+    if (elemente.classList.contains('selecionado') || elemente.classList.contains('branco')) {
+        return;
+    }
 
     if (resposta.innerHTML === 'true') {
 
@@ -192,6 +209,19 @@ function comparaResposta(elemento) {
     console.log(totalDePontos);
     perguntasRespondidas++;
     terminarQuizz();
+    proximaPergunta();
+
+}
+
+function proximaPergunta() {
+    
+    const proximaPergunta = document.querySelector(`.titulo${proximo}`);
+    if (proximaPergunta !== null) {
+        
+        proximaPergunta.scrollIntoView({behavior:"smooth"});
+        proximo++;
+
+    }
 
 }
 
@@ -266,5 +296,8 @@ function renderizarPercetagem(pontuacao) {
         <img src="${objetoLevelDeRespostas[indexDoLevel].image}" alt="">
         <p>${objetoLevelDeRespostas[indexDoLevel].text}</p>
     `;
-        
+    
+
+    nivelApresentado.scrollIntoView({behavior:"smooth"});
 }
+
