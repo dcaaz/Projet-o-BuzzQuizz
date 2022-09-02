@@ -218,21 +218,53 @@ function calcudoDePercentagem() {
 }
 
 function renderizarPercetagem(pontuacao) {
-    let j = 0;
+
+    let levelDesordenado = [];
+    let indexDoLevel = 0;
+
     for (let i = 0; i < objetoLevelDeRespostas.length; i++) {
 
-        if (pontuacao <= objetoLevelDeRespostas[i].minValue) {
-            
-            console.log("Passou de nivel");
+        levelDesordenado.push(objetoLevelDeRespostas[i].minValue);
 
-        } else {
+    }
 
-            console.log("Passou de nivel");
+    const levelOdenado = levelDesordenado.sort((a,b) => a-b);
+
+    const levelSelecionado = levelOdenado.find(element => element >= pontuacao);
+    
+    for (let i = 0; i < objetoLevelDeRespostas.length; i++) {
+
+        if (levelSelecionado === objetoLevelDeRespostas[i].minValue) {
+
+            indexDoLevel = (i-1);
 
         }
+
+        if (levelSelecionado === undefined) {
+
+            indexDoLevel = (objetoLevelDeRespostas.length-1);
+
+        }
+
+    }
+
+    if (indexDoLevel < 0) {
+
+        indexDoLevel = 0;
+
+    }
+
+    const nivelApresentado = document.querySelector('.conteudo-acertos .porcentagem');
+
+    nivelApresentado.innerHTML = `
+        <p>${pontuacao}% de acerto: ${objetoLevelDeRespostas[indexDoLevel].title}</p>
+    `;
+    
+    const descricaoApresentado = document.querySelector('.conteudo-acertos .acertoImg');
+    
+    descricaoApresentado.innerHTML = `
+        <img src="${objetoLevelDeRespostas[indexDoLevel].image}" alt="">
+        <p>${objetoLevelDeRespostas[indexDoLevel].text}</p>
+    `;
         
-    } 
-
-    console.log(j);
-
 }

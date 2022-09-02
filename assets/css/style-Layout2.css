@@ -170,18 +170,18 @@
     background-color: #EC362D;
 }
 
-.acerto-img {
+.acertoImg {
     display: flex;
     justify-content: space-between;
     margin: 20px
 }
 
-.acerto-img>img {
+.acertoImg>img {
     width: 364px;
     height: 273px;
 }
 
-.acerto-img>p {
+.acertoImg>p {
     width: 328px;
     height: 250px;
 
