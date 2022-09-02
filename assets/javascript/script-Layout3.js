@@ -85,7 +85,7 @@ function retornarAoLayoutTresParaUm() {
 
 function mudaSecao(elemento, proximo, funcao){
     
-    //mudarSecao = funcao();
+    mudarSecao = funcao();
 
     if (mudarSecao){   
         const secaoAtual = document.querySelector(elemento);
@@ -94,6 +94,8 @@ function mudaSecao(elemento, proximo, funcao){
         secaoAtual.classList.add('esconde');
         proximaSecao.classList.remove('esconde');
     }
+
+    mudarSecao = false;
 }
 
 
@@ -211,6 +213,13 @@ function checaCorFundo(elemento){
     }
 
 }
+
+/*function checaResposta(elemento){
+    const elementoSelecionado = document.querySelector(elemento);
+    const corFundo = elementoSelecionado.querySelector('.textoResposta');    
+
+
+}*/
 
 function perguntaQuizz(elemento){
     validaPergunta(elemento);
