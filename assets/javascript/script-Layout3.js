@@ -88,6 +88,12 @@ function retornarAoLayoutTresParaUm() {
 
 }
 
+function mostraConteudo(elemento){
+    const elementoCard = elemento.parentNode.nextElementSibling;
+    elementoCard.classList.toggle('esconde');
+
+}
+
 function mudaSecao(elemento, proximo, funcao){
     
     mudarSecao = funcao();
