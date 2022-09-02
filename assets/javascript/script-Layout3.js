@@ -11,6 +11,26 @@ let mudarSecao = false;
 let numPerguntas;
 let numNiveis;
 
+// pergunta (Card 2)
+let pergunta = {
+    title:'',
+    color:'',
+    answers:[
+        {
+            text: '',
+            image: '',
+            isCorrectAnswer: true
+        },
+        {
+            text: '',
+            image: '',
+            isCorrectAnswer: false
+        },
+    ]
+}
+
+
+
 let quizzNovo ={
         title:'',
         image:'',
@@ -65,7 +85,7 @@ function retornarAoLayoutTresParaUm() {
 
 function mudaSecao(elemento, proximo, funcao){
     
-    mudarSecao = funcao();
+    //mudarSecao = funcao();
 
     if (mudarSecao){   
         const secaoAtual = document.querySelector(elemento);
@@ -159,6 +179,46 @@ function nomeQuizz(){
 //-------------------------------------------------------------------------------
 // ------------------------- inicio da secao perguntas --------------------------
 
-function perguntasQuizz(){
+function validaPergunta(elemento){
     
+    const elementoSelecionado = document.querySelector(elemento);
+
+    const texto = elementoSelecionado.querySelector('.textoPergunta');
+
+    if(texto.value.length < 20){
+        alert('Quantidade invalida de caracteres para a pergunta! mínimo de 20 caracteres');
+    }
+    else{
+        pergunta.title = texto.value;
+        console.log(pergunta.title);
+        return true;
+    }
+}
+
+function checaCorFundo(elemento){
+
+    const elementoSelecionado = document.querySelector(elemento);
+    const corFundo = elementoSelecionado.querySelector('.corFundoPergunta');
+    const stringCor = corFundo.value;
+    //teste por expressão regular (se começa por #, e os demais caracteres são de 0 a A e são no total 6);
+    const testaHexa = /^#([A-Fa-f0-9]{6})/; 
+
+    if(testaHexa.test(stringCor)){
+        console.log("Cor Válida!");
+        pergunta.color = stringCor;
+    }else{
+        alert("Cor Inválida!");
+    }
+
+}
+
+function perguntaQuizz(elemento){
+    validaPergunta(elemento);
+    checaCorFundo(elemento);
+    //validaRespostas(); //qtde >=2  e possui 1 certa
+    //validaImgResposta();
+}
+
+function checaPerguntas(){
+    // enquanto não checar cada card de perguntas...
 }
