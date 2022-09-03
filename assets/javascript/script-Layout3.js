@@ -20,7 +20,7 @@ let resposta = {
 };
 
 // objeto pergunta 
-let pergunta = {
+const pergunta = {
     title:'',
     color:'',
     answers:[]
@@ -334,20 +334,31 @@ function perguntaQuizz(elemento){
     }
 }
 
-function validaRespostas(classe){
+function validaRespostaCerta(classe){
     const elemento = document.querySelector(`.${classe}`);
     const correta = elemento.querySelector('.correta');
-    //console.log (correta);
-    const respostas = [];
+    if (checaValidadeResposta(correta)){
+        resposta.isCorrectAnswer = true;
+        pergunta.answers.push(resposta);
+        console.log(resposta);
+        return true;
+    }
+    return false;
+}
 
+function validaRespostas(classe){
+    const elemento = document.querySelector(`.${classe}`);
+   /* const correta = elemento.querySelector('.correta');
+    //console.log (correta);
+    
     if (checaValidadeResposta(correta) && pergunta.answers.length === 0){
         resposta.isCorrectAnswer = true;
         pergunta.answers.push(resposta);
         console.log(resposta);
-    }
-    //console.log (pergunta.answers);
-    
-    //let respostaIncorreta = [];
+    }*/
+    const respostas = ['oi'];
+
+    validaRespostaCerta(classe);
     
     for(let i = 0; i < 3 ; i++){
         let incorreta = elemento.querySelector(`.incorreta${1+i}`);
@@ -357,30 +368,13 @@ function validaRespostas(classe){
             respostas.push(resposta);
             console.log(resposta);
         }
-        /*if(pergunta.answers.length < 2){
-            respostaIncorreta = document.querySelector(incorreta);
-            console.log(respostaIncorreta);       
-        }*/
+
     }
-    /*if (respostaIncorreta.length === 0){
-        console.log('Sem respostas erradas!')
-    }else{
-        if(pergunta.answers.length > 0){
-            for(let i = 0; i < respostaIncorreta.length ; i++){
-                //console.log(respostaIncorreta[i]);
-                if(respostaIncorreta[i]){
-                    pergunta.answers.push(respostaIncorreta[i]);
-                }
-            }
-        }
-      //  console.log(respostaIncorreta.length);
-    }*/
-    //for(let i = 0; i < respostas.length ; i++){
-        //console.log(respostaIncorreta[i]);
-        //if(respostas[i]){
-            pergunta.answers.push(respostas);
-        //}
-    //}
+ 
+    for(let i = 0; i < respostas.length ; i++){
+
+            pergunta.answers.push(respostas[i]);
+    }
     console.log (pergunta.answers);
     
 }
