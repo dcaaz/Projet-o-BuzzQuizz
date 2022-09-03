@@ -82,7 +82,7 @@ input::placeholder{
 
 }
 
-.bloco-resposta{
+.bloco-resposta, .bloco-pergunta{
     margin: 12px;
 }
 

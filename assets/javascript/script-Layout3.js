@@ -258,14 +258,16 @@ function renderizaPerguntas(){
     for(let i = 0; i < numPerguntas; i++){
         let esconder = '';
         let botaoEditar = '';
+
         if (i>0){
             esconder = 'esconde';
             botaoEditar = `<ion-icon name="create-outline" 
             onclick="mostraConteudo(this)"></ion-icon>
             `;
         }
+
         secaoPerguntas.innerHTML += `
-            <div class="card">
+            <div class="card pergunta${i}">
                 <div class="qtd-card">
                     <p>Pergunta ${1+i}</p>
                     ${botaoEditar}
@@ -273,34 +275,35 @@ function renderizaPerguntas(){
 
                 <div class="card-content ${esconder}">
 
-                    <div class="bloco-resposta">
-                        <input type="text" placeholder="Texto da pergunta">
-                        <input type="text" placeholder="Cor de fundo da pergunta">
+                    <div class="bloco-pergunta">
+                        <input type="text" placeholder="Texto da pergunta" class="textoPergunta">
+                        <input type="text" placeholder="Cor de fundo da pergunta" class="corFundoPergunta">
                     </div>
 
                     <p>Resposta correta</p>
 
                     <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta correta">
-                        <input type="text" placeholder="URL da imagem">
+                        <input type="text" placeholder="Resposta correta" class="textoResposta correta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
                     <p>Respostas incorretas</p>
 
                     <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta incorreta">
-                        <input type="text" placeholder="URL da imagem">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
                     <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta incorreta">
-                        <input type="text" placeholder="URL da imagem">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
                     <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta incorreta">
-                        <input type="text" placeholder="URL da imagem">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
+
 
                 </div>
 
