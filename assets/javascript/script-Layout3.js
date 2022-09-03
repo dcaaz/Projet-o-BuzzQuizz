@@ -215,6 +215,7 @@ function checaCorFundo(elemento){
     if(testaHexa.test(stringCor)){
         console.log("Cor Válida!");
         pergunta.color = stringCor;
+        return true;
     }else{
         alert("Cor Inválida!");
     }
@@ -222,10 +223,10 @@ function checaCorFundo(elemento){
 }
 
 function checaValidadeResposta(elemento){
-    const elementoSelecionado = document.querySelector(elemento);
-    const texto = elementoSelecionado.querySelector('.textoResposta');
+    //const elementoSelecionado = document.querySelector(elemento);
+    const texto = elemento.querySelector('.textoResposta');
 
-    const img = elementoSelecionado.querySelector('.imgResposta');
+    const img = elemento.querySelector('.imgResposta');
     const testaImagem = img.value;
     const textoResposta = texto.value;
 
@@ -282,24 +283,24 @@ function renderizaPerguntas(){
 
                     <p>Resposta correta</p>
 
-                    <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta correta" class="textoResposta correta">
+                    <div class="bloco-resposta correta">
+                        <input type="text" placeholder="Resposta correta" class="textoResposta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
                     <p>Respostas incorretas</p>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta1">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta2">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta3">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
@@ -322,13 +323,79 @@ function renderizaPerguntas(){
 renderizaPerguntas();
 
 function perguntaQuizz(elemento){
-    validaPergunta(elemento);
-    checaCorFundo(elemento);
-    checaValidadeResposta(elemento);
-    //validaRespostas(); //qtde >=2  e possui 1 certa
-    //validaImgResposta();
+   if(validaPergunta(elemento)){
+        if(checaCorFundo(elemento)){
+            if(checaValidadeResposta(elemento)){
+                /*if(pergunta.answers.length >= 2){ testando em outra funcao
+                    return true;
+                }*/
+            }
+        }
+    }
 }
+
+function validaRespostas(classe){
+    const elemento = document.querySelector(`.${classe}`);
+    const correta = elemento.querySelector('.correta');
+    //console.log (correta);
+    const respostas = [];
+
+    if (checaValidadeResposta(correta) && pergunta.answers.length === 0){
+        resposta.isCorrectAnswer = true;
+        pergunta.answers.push(resposta);
+        console.log(resposta);
+    }
+    //console.log (pergunta.answers);
+    
+    //let respostaIncorreta = [];
+    
+    for(let i = 0; i < 3 ; i++){
+        let incorreta = elemento.querySelector(`.incorreta${1+i}`);
+        //testar apenas se tamanho das respostas for < 2
+        if(checaValidadeResposta(incorreta)){
+            resposta.isCorrectAnswer = false;
+            respostas.push(resposta);
+            console.log(resposta);
+        }
+        /*if(pergunta.answers.length < 2){
+            respostaIncorreta = document.querySelector(incorreta);
+            console.log(respostaIncorreta);       
+        }*/
+    }
+    /*if (respostaIncorreta.length === 0){
+        console.log('Sem respostas erradas!')
+    }else{
+        if(pergunta.answers.length > 0){
+            for(let i = 0; i < respostaIncorreta.length ; i++){
+                //console.log(respostaIncorreta[i]);
+                if(respostaIncorreta[i]){
+                    pergunta.answers.push(respostaIncorreta[i]);
+                }
+            }
+        }
+      //  console.log(respostaIncorreta.length);
+    }*/
+    //for(let i = 0; i < respostas.length ; i++){
+        //console.log(respostaIncorreta[i]);
+        //if(respostas[i]){
+            pergunta.answers.push(respostas);
+        //}
+    //}
+    console.log (pergunta.answers);
+    
+}
+
 
 function checaPerguntas(){
     // enquanto não checar cada card de perguntas...
+    for(let i = 0; i < numPerguntas; i++){
+        
+        let classePergunta = `.pergunta${i}`;
+        let elemento = document.querySelector(classePergunta);
+
+        if(!perguntaQuizz(elemento)){
+            return false;
+        }
+    }
+    return true;
 }
