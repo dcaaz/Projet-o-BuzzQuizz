@@ -98,12 +98,12 @@ function renderizarQuizz(resposta) {
 
     localDasPerguntas.innerHTML = '';
     for (let i = 0; i < objetoPerguntaCompleto.length; i++) {
-        
+
         localDasPerguntas.innerHTML += `
             
             <div class="conteudo titulo${i}">
             
-                <div class="pergunta azul">
+                <div class="pergunta"   style="background-color:${objetoPerguntaCompleto[i].color}">
                     
                     <p>${objetoPerguntaCompleto[i].title}</p>
 
@@ -152,7 +152,10 @@ function selecionarAlternativa (selecionarAlternativa) {
 
     const alternativas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa img');
     const alternativaSelecionada = selecionarAlternativa.querySelector('.alternativa img');
-    
+
+    const listaDeRespostas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa span');
+    const textos = selecionarAlternativa.parentNode.querySelectorAll('.alternativa p');
+
     for (let i = 0; i < alternativas.length; i++){
     
         if (alternativas[i].classList.contains('branco') || alternativas[i].classList.contains('selecionado')){
@@ -164,15 +167,16 @@ function selecionarAlternativa (selecionarAlternativa) {
     for (let i = 0; i < alternativas.length; i++){
     
         if (alternativas[i] !== alternativaSelecionada){
+            
             alternativas[i].classList.add('branco');
+            textos[i].classList.add('opacite');
         } else {
+            
             alternativas[i].classList.add('selecionado');
+
         }
     
     }
-
-    const listaDeRespostas = selecionarAlternativa.parentNode.querySelectorAll('.alternativa span');
-    const textos = selecionarAlternativa.parentNode.querySelectorAll('.alternativa p');
 
     for (let i = 0; i < listaDeRespostas.length; i++) {
 
@@ -300,4 +304,3 @@ function renderizarPercetagem(pontuacao) {
 
     nivelApresentado.scrollIntoView({behavior:"smooth"});
 }
-
