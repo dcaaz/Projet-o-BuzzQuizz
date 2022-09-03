@@ -26,7 +26,7 @@
 
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-    
+
 }
 
 .branco {
@@ -51,7 +51,7 @@
     /* background-image: url("../image/castelo.png"); */
 }
 
-.questionamento-quiz > .escuro {
+.questionamento-quiz>.escuro {
 
     width: 100%;
     height: 100%;
@@ -59,10 +59,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    
-} 
 
-.questionamento-quiz > img {
+}
+
+.questionamento-quiz>img {
 
     width: 100%;
     height: 100%;
@@ -90,7 +90,7 @@
 /* pergunta */
 
 .pergunta {
-    width: 680px;
+    width: 90%;
     height: 137.99px;
 
     display: flex;
@@ -238,13 +238,72 @@
 }
 
 .verde {
-
-    color: green;
-
+    color: #009C22;
 }
 
 .vermelho {
+    color: #FF4B4B;
+}
 
-    color: red;
+@media (max-width: 780px) {
+    .perguntaLayout2 {
+        width: 500px;;
 
+    }
+
+    .conteudo {
+        width: 100%;
+    }
+
+    .alternativa {
+        width: 200px;
+        height: 190px;
+    }
+
+    .alternativa>p {
+        height: 28px;
+    
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 15px;
+    }
+
+    .pergunta {
+        width: 84%;
+
+        font-size: 23px;
+        margin-left: 41px;
+    }
+}
+
+@media (max-width: 500px) {
+    .perguntaLayout2 {
+        width: 375px;;
+
+    }
+
+    .conteudo {
+        width: 100%;
+    }
+
+    .alternativa {
+        width: 163px;
+        height: 140px;
+    }
+
+    .alternativa>p {
+        height: 22px;
+    
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 15px;
+    }
+
+    .pergunta {
+        width: 92%;
+        
+        font-size: 19px;
+        line-height: 22px;
+        margin-left: 15px;
+    }
 }
