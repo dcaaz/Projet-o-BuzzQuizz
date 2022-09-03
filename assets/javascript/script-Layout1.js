@@ -6,6 +6,9 @@ function entrarNoQuizz() {
     layoutUm.classList.add('esconde');
     layoutDois.classList.remove('esconde');
 
+    const inicio = document.querySelector(".layout1");
+    inicio.scrollIntoView({block:"start"});
+
 }
 
 function novoQuizz() {
@@ -14,6 +17,9 @@ function novoQuizz() {
     const layoutTres = document.querySelector('.layout3');
     layoutUm.classList.add('esconde');
     layoutTres.classList.remove('esconde');
+
+    const inicio = document.querySelector(".layout1");
+    inicio.scrollIntoView({block:"start"});
 
 }
 

@@ -163,10 +163,11 @@
 
 .nomeDoQuizz {
     
-    height: 54px;
     position: absolute;
     bottom: 0;
     left: 0;
+    padding: 12px;
+    word-break: break-all;
     text-align: center;
     font-weight: 400;
     font-size: 19px;

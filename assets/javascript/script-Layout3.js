@@ -8,30 +8,22 @@ let quizzTeste =[];
 let mudarSecao = false;
 
 //Quantidade de perguntas passados pelo usuário
-let numPerguntas;
+let numPerguntas = 5;
+
 let numNiveis;
+
+// objeto resposta
 let resposta = {
     text: '',
     image: '',
     isCorrectAnswer: true
 };
 
-// pergunta (Card 2)
+// objeto pergunta 
 let pergunta = {
     title:'',
     color:'',
-    answers:[
-        {
-            text: '',
-            image: '',
-            isCorrectAnswer: true
-        },
-        {
-            text: '',
-            image: '',
-            isCorrectAnswer: false
-        },
-    ]
+    answers:[]
 }
 
 
@@ -75,6 +67,10 @@ let quizzNovo ={
             }
         ]
     };
+
+
+
+//----------------------------- funcoes genericas -------------------------------------
 
 function retornarAoLayoutTresParaUm() {
 
@@ -225,7 +221,7 @@ function checaCorFundo(elemento){
 
 }
 
-function checaResposta(elemento){
+function checaValidadeResposta(elemento){
     const elementoSelecionado = document.querySelector(elemento);
     const texto = elementoSelecionado.querySelector('.textoResposta');
 
@@ -247,10 +243,88 @@ function checaResposta(elemento){
 
 }
 
+
+function renderizaPerguntas(){
+    const secaoPerguntas = document.querySelector('.perguntas-quizz');
+    //min 3 perguntas
+
+    secaoPerguntas.innerHTML = `
+        <div class="titulo">
+            <h1>Crie suas perguntas</h1>
+        </div>
+    `;
+    
+
+    for(let i = 0; i < numPerguntas; i++){
+        let esconder = '';
+        let botaoEditar = '';
+
+        if (i>0){
+            esconder = 'esconde';
+            botaoEditar = `<ion-icon name="create-outline" 
+            onclick="mostraConteudo(this)"></ion-icon>
+            `;
+        }
+
+        secaoPerguntas.innerHTML += `
+            <div class="card pergunta${i}">
+                <div class="qtd-card">
+                    <p>Pergunta ${1+i}</p>
+                    ${botaoEditar}
+                </div>
+
+                <div class="card-content ${esconder}">
+
+                    <div class="bloco-pergunta">
+                        <input type="text" placeholder="Texto da pergunta" class="textoPergunta">
+                        <input type="text" placeholder="Cor de fundo da pergunta" class="corFundoPergunta">
+                    </div>
+
+                    <p>Resposta correta</p>
+
+                    <div class="bloco-resposta">
+                        <input type="text" placeholder="Resposta correta" class="textoResposta correta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
+                    </div>
+
+                    <p>Respostas incorretas</p>
+
+                    <div class="bloco-resposta">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
+                    </div>
+
+                    <div class="bloco-resposta">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
+                    </div>
+
+                    <div class="bloco-resposta">
+                        <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
+                        <input type="text" placeholder="URL da imagem" class="imgResposta">
+                    </div>
+
+
+                </div>
+
+            </div>
+        `;
+    }
+
+    secaoPerguntas.innerHTML += `
+                <button onclick="mudaSecao('.perguntas-quizz',
+                '.nivel-quizz',perguntaQuizz('.pergunta1'))">
+                Prosseguir para criar níveis</button>
+                `;
+
+}
+
+renderizaPerguntas();
+
 function perguntaQuizz(elemento){
     validaPergunta(elemento);
     checaCorFundo(elemento);
-    checaResposta(elemento);
+    checaValidadeResposta(elemento);
     //validaRespostas(); //qtde >=2  e possui 1 certa
     //validaImgResposta();
 }
