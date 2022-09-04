@@ -10,7 +10,7 @@ let mudarSecao = false;
 //Quantidade de perguntas passados pelo usuário
 let numPerguntas = 0;
 
-let numNiveis;
+let numNiveis = 2;
 
 // objeto resposta
 /*let resposta = {
@@ -26,6 +26,13 @@ let pergunta = {
     answers:[]
 }
 
+let nivel = {
+    title: '',
+    image: '',
+    text: '',
+    minValue: 0
+}
+
 function resetaPergunta(){
     pergunta = {
         title:'',
@@ -34,28 +41,21 @@ function resetaPergunta(){
     }
 }
 
+function resetaNivel(){
+    nivel = {
+        title: '',
+        image: '',
+        text: '',
+        minValue: 0
+    }
+}
+
 let quizzNovo ={
         title:'',
         image:'',
         // perguntas
         questions:[
-            {
-                title:'',
-                color:'',
-                answers:[
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: false
-                    },
-
-                ]
-            }
+    
         ],
         //nível (nota) de acertos
         levels:[
@@ -64,12 +64,6 @@ let quizzNovo ={
                 image: '',
                 text: '',
                 minValue: 0
-            },
-            {
-                title: '',
-                image: '',
-                text: '',
-                minValue: 50
             }
         ]
     };
@@ -439,5 +433,83 @@ function renderizaNiveis(){
         </div>
     `;
 
+    for(let i = 0; i < numNiveis; i++){
+        let esconder = '';
+        let botaoEditar = '';
+
+        if (i>0){
+            esconder = 'esconde';
+            botaoEditar = `<ion-icon name="create-outline" 
+            onclick="mostraConteudo(this)"></ion-icon>
+            `;
+        }
+
+        secaoNiveis.innerHTML += `
+            <div class="card nivel${i}">
+                <div class="qtd-card">
+                    <p>Nível ${1+i}</p>
+                    ${botaoEditar}
+                </div>
+
+                <div class="card-content ${esconder}">
+
+                    <input type="text" placeholder="Título do nível" class="tituloNivel">
+                    <input type="text" placeholder="% de acerto mínima" class="porcentagemNivel">
+                    <input type="text" placeholder="URL da imagem do nível" class="imgNivel">
+                    <input type="text" placeholder="Descrição do nível" class="textoNivel">
+
+                </div>
+            </div>
+            `;
+    }
+
+    secaoNiveis.innerHTML += `
+    <button onclick="mudaSecao('.nivel-quizz','.finalizou-quizz',
+    checaNiveis,renderizaFinal)">
+    Finalizar Quizz</button>
+    `;
+}
+
+renderizaNiveis();
+
+function validaTituloNivel(elemento){
     
+    const titulo = elemento.querySelector('.tituloNivel');
+
+    if(titulo.value.length < 10){
+        alert('Parametros inválidos para o título do Nível!');
+    }
+    else{
+        nivel.title = titulo.value;
+        return true;
+    }
+    return false;
+}
+
+/*ehImagem(imgNivel)*/
+
+function porcentagemAcerto(elemento){
+    const porcentagem = Number(elemento.querySelector('.porcentagemNivel').value);
+
+    if(isNaN(porcentagem) || porcentagem < 0 || porcentagem > 100){
+        alert('Parametros inválidos para a porcentagem!');
+        return false;
+    }
+    else{
+        nivel.minValue = porcentagem;
+        return true;
+    }
+}
+
+function descricaoNivel(elemento){
+    const descricao = elemento.querySelector('.textoNivel');
+
+    if(descricao.value.length < 30){
+        alert('Parametros inválidos para a descricao do Nível!');
+    }
+    else{
+        nivel.text = descricao.value;
+        return true;
+    }
+    return false;
 }
