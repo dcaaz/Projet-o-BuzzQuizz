@@ -30,7 +30,7 @@
         </header>
 
         <!-- Layout 1 -->
-        <div class="layout1">
+        <div class="layout1 esconde">
 
 
             <main>
@@ -119,7 +119,7 @@
         <!-- fecha layout2 -->
 
         <!-- Layout 3 -->
-        <div class="layout3 esconde">
+        <div class="layout3 ">
 
             <main>
                 <!--    <button onclick="retornarAoLayoutTresParaUm()" >Voltar na primeira página</button> -->
@@ -138,48 +138,13 @@
 
                         </div>
 
-                        <button onclick="mudaSecao('.nome-quizz', '.perguntas-quizz', nomeQuizz)" >Prosseguir para criar perguntas</button>
+                        <button onclick="mudaSecao('.nome-quizz', '.perguntas-quizz', nomeQuizz, renderizaPerguntas)" >Prosseguir para criar perguntas</button>
 
                     </section>
 
-                    <section class="perguntas-quizz ">
+                    <section class="perguntas-quizz">
 
-                    <!--    <div class="titulo">
-                            <h1>Crie suas perguntas</h1>
-                        </div>
-
-                        <div class="card pergunta1">
-                            <p>Pergunta 1</p>
-
-                            <input type="text" placeholder="Texto da pergunta" class="textoPergunta">
-                            <input type="text" placeholder="Cor de fundo da pergunta" class="corFundoPergunta">
-
-                            <p>Resposta correta</p>
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta correta" class="textoResposta correta">
-                                <input type="text" placeholder="URL da imagem" class="imgResposta">
-                            </div>
-
-                            <p>Respostas incorretas</p>
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta" class="textoResposta">
-                                <input type="text" placeholder="URL da imagem" class="imgResposta">
-                            </div>
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
-                                <input type="text" placeholder="URL da imagem" class="imgResposta">
-                            </div>
-
-                            <div class="bloco-resposta">
-                                <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
-                                <input type="text" placeholder="URL da imagem" class="imgResposta">
-                            </div>
-
-                        </div>
-
+                    <!-- 
                         <div class="card">
                             <div class="qtd-card">
                                 <p>Pergunta 2</p>
@@ -221,47 +186,7 @@
 
                         </div>
 
-                        <div class="card">
-                            <div class="qtd-card">
-                                <p>Pergunta 3</p>
-                                <ion-icon name="create-outline" onclick="mostraConteudo(this)"></ion-icon>
-                            </div>
-
-                            <div class="card-content esconde">
-
-                                <div class="bloco-resposta">
-                                    <input type="text" placeholder="Texto da pergunta">
-                                    <input type="text" placeholder="Cor de fundo da pergunta">
-                                </div>
-
-                                <p>Resposta correta</p>
-
-                                <div class="bloco-resposta">
-                                    <input type="text" placeholder="Resposta correta">
-                                    <input type="text" placeholder="URL da imagem">
-                                </div>
-
-                                <p>Respostas incorretas</p>
-
-                                <div class="bloco-resposta">
-                                    <input type="text" placeholder="Resposta incorreta">
-                                    <input type="text" placeholder="URL da imagem">
-                                </div>
-
-                                <div class="bloco-resposta">
-                                    <input type="text" placeholder="Resposta incorreta">
-                                    <input type="text" placeholder="URL da imagem">
-                                </div>
-
-                                <div class="bloco-resposta">
-                                    <input type="text" placeholder="Resposta incorreta">
-                                    <input type="text" placeholder="URL da imagem">
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                       
                         <button onclick="mudaSecao('.perguntas-quizz','.nivel-quizz',perguntaQuizz('.pergunta1'))" >Prosseguir para criar níveis</button>
                     -->
                     </section>
