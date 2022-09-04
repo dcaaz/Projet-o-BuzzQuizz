@@ -8,7 +8,7 @@ let quizzTeste =[];
 let mudarSecao = false;
 
 //Quantidade de perguntas passados pelo usuário
-let numPerguntas = 2;
+let numPerguntas = 0;
 
 let numNiveis;
 
@@ -20,13 +20,19 @@ let numNiveis;
 };
 */
 // objeto pergunta 
-const pergunta = {
+let pergunta = {
     title:'',
     color:'',
     answers:[]
 }
 
-
+function resetaPergunta(){
+    pergunta = {
+        title:'',
+        color:'',
+        answers:[]
+    }
+}
 
 let quizzNovo ={
         title:'',
@@ -90,7 +96,7 @@ function mostraConteudo(elemento){
 
 }
 
-function mudaSecao(elemento, proximo, funcao){
+function mudaSecao(elemento, proximo, funcao, funcao2){
     
     mudarSecao = funcao();
 
@@ -100,9 +106,10 @@ function mudaSecao(elemento, proximo, funcao){
 
         secaoAtual.classList.add('esconde');
         proximaSecao.classList.remove('esconde');
+        mudarSecao = false;
+        funcao2();
     }
 
-    mudarSecao = false;
 }
 
 
@@ -154,8 +161,8 @@ function validaQtdPerguntas(){
 
     //console.log(qtdPergunta);
 
-    //    não NaN?                    inteiro?           maior que 3?
-    if( !isNaN(qtdPergunta) && qtdPergunta % 1 === 0 && qtdPergunta > 3){
+    //    não NaN?                    inteiro?           maior que 2?
+    if( !isNaN(qtdPergunta) && qtdPergunta % 1 === 0 && qtdPergunta >= 3){
         numPerguntas = qtdPergunta;
         return true;
     }
@@ -168,8 +175,8 @@ function validaQtdNiveis(){
     const elemento = document.querySelector('.qtdNiveisQuizzNovo');
     const qtdNiveis = Number(elemento.value);
     
-    //    não NaN?                     inteiro?           maior que 3?
-    if( !isNaN(qtdNiveis) && qtdNiveis % 1 === 0 && qtdNiveis > 2){
+    //    não NaN?                     inteiro?           maior que 1?
+    if( !isNaN(qtdNiveis) && qtdNiveis % 1 === 0 && qtdNiveis >= 2){
         numNiveis = qtdNiveis;
         return true;
     }
@@ -180,6 +187,7 @@ function validaQtdNiveis(){
 
 function nomeQuizz(){
     if(validaTitulo() && validaImg() && validaQtdPerguntas() && validaQtdNiveis()){
+        console.log('Status quizz-novo', quizzNovo);
         return true;
     }
 }
@@ -190,16 +198,15 @@ function nomeQuizz(){
 
 function validaPergunta(elemento){
     
-    const elementoSelecionado = document.querySelector(elemento);
+    //const elementoSelecionado = document.querySelector(elemento);
 
-    const texto = elementoSelecionado.querySelector('.textoPergunta');
+    const texto = elemento.querySelector('.textoPergunta');
 
     if(texto.value.length < 20){
         alert('Quantidade invalida de caracteres para a pergunta! mínimo de 20 caracteres');
     }
     else{
         pergunta.title = texto.value;
-        console.log(pergunta.title);
         return true;
     }
 }
@@ -331,7 +338,7 @@ function renderizaPerguntas(){
 
 }
 
-renderizaPerguntas();
+
 
 function perguntaQuizz(elemento){
    if(validaPergunta(elemento)){
@@ -368,6 +375,8 @@ function validaRespostas(elemento){
     
     if(respostas.length < 2 || respostas[0] === false){
         alert('Por favor, preencha as respostas de maneira correta!');
+        respostas = [];
+
     } else{
         for(let i = 0; i < 4; i++){
             if(respostas[i]){
@@ -375,9 +384,10 @@ function validaRespostas(elemento){
             }
         }
         console.log('Salvo nas perguntas',pergunta.answers)
+        respostas = [];
+        console.log('respostas:',respostas);
+        return true;
     }
-    respostas = [];
-    console.log('respostas:',respostas);
 
     
 }
@@ -387,12 +397,20 @@ function checaPerguntas(){
     // enquanto não checar cada card de perguntas...
     for(let i = 0; i < numPerguntas; i++){
         
-        let classePergunta = `.pergunta${i}`;
-        let elemento = document.querySelector(classePergunta);
-
-        if(!perguntaQuizz(elemento)){
-            return false;
+        let classePergunta = document.querySelector(`.pergunta${i}`);
+        if(validaPergunta(classePergunta)){
+            if(!validaRespostas(classePergunta)){
+                resetaPergunta();
+                return false;
+            }
+            else{
+                quizzNovo.questions.push(pergunta);
+                resetaPergunta();
+            }
         }
     }
+    console.log('perguntas', pergunta);
+    console.log("quizz info:", quizzNovo);
+
     return true;
 }
