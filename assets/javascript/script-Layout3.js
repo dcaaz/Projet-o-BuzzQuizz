@@ -202,8 +202,8 @@ function validaPergunta(elemento){
 
     const texto = elemento.querySelector('.textoPergunta');
 
-    if(texto.value.length < 20){
-        alert('Quantidade invalida de caracteres para a pergunta! mínimo de 20 caracteres');
+    if(texto.value.length < 20 || !checaCorFundo(elemento)){
+        alert('Parametros inválidos para a pergunta!');
     }
     else{
         pergunta.title = texto.value;
@@ -213,8 +213,8 @@ function validaPergunta(elemento){
 
 function checaCorFundo(elemento){
 
-    const elementoSelecionado = document.querySelector(elemento);
-    const corFundo = elementoSelecionado.querySelector('.corFundoPergunta');
+ //   const elementoSelecionado = document.querySelector(elemento);
+    const corFundo = elemento.querySelector('.corFundoPergunta');
     const stringCor = corFundo.value;
     //teste por expressão regular (se começa por #, e os demais caracteres são de 0 a A e são no total 6);
     const testaHexa = /^#([A-Fa-f0-9]{6})/; 
@@ -224,7 +224,8 @@ function checaCorFundo(elemento){
         pergunta.color = stringCor;
         return true;
     }else{
-        alert("Cor Inválida!");
+        return false;
+        //alert("Cor Inválida!");
     }
 
 }
@@ -332,7 +333,7 @@ function renderizaPerguntas(){
 
     secaoPerguntas.innerHTML += `
                 <button onclick="mudaSecao('.perguntas-quizz',
-                '.nivel-quizz',perguntaQuizz('.pergunta0'))">
+                '.nivel-quizz',checaPerguntas,renderizaNiveis)">
                 Prosseguir para criar níveis</button>
                 `;
 
@@ -340,17 +341,17 @@ function renderizaPerguntas(){
 
 
 
-function perguntaQuizz(elemento){
+/*function perguntaQuizz(elemento){
    if(validaPergunta(elemento)){
         if(checaCorFundo(elemento)){
             if(checaValidadeResposta(elemento)){
-                /*if(pergunta.answers.length >= 2){ testando em outra funcao
+                if(pergunta.answers.length >= 2){ testando em outra funcao
                     return true;
-                }*/
+                }
             }
         }
     }
-}
+}*/
 
 
 function validaRespostas(elemento){
@@ -376,10 +377,17 @@ function validaRespostas(elemento){
     if(respostas.length < 2 || respostas[0] === false){
         alert('Por favor, preencha as respostas de maneira correta!');
         respostas = [];
-
+        return false;
+        
     } else{
         for(let i = 0; i < 4; i++){
             if(respostas[i]){
+                // a resposta certa deve ser diferente das erradas!
+                if(i !== 0 && respostas[i].text === respostas[0].text){
+                    alert('Por favor, preencha as respostas de maneira correta!');
+                    respostas = [];
+                    return false;
+                }
                 pergunta.answers.push(respostas[i]);
             }
         }
@@ -407,10 +415,29 @@ function checaPerguntas(){
                 quizzNovo.questions.push(pergunta);
                 resetaPergunta();
             }
+        }else{
+            return false;
         }
     }
     console.log('perguntas', pergunta);
     console.log("quizz info:", quizzNovo);
 
     return true;
+}
+
+// ----------------------------- fim da secao perguntas --------------------------
+//--------------------------------------------------------------------------------
+// ----------------------------- inicio da secao niveis --------------------------
+
+function renderizaNiveis(){
+    const secaoNiveis = document.querySelector('.nivel-quizz');
+    //min 2 niveis
+
+    secaoNiveis.innerHTML = `
+         <div class="titulo">
+            <h1>Agora, decida os níveis</h1>
+        </div>
+    `;
+
+    
 }
