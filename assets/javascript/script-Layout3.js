@@ -486,7 +486,19 @@ function validaTituloNivel(elemento){
     return false;
 }
 
-/*ehImagem(imgNivel)*/
+
+function validaImgNivel(elemento){
+    const img = elemento.querySelector('.imgNivel');
+    const testaImagem = img.value;
+    if(ehImagem(testaImagem)){
+        nivel.image = testaImagem;
+        return true;
+    }else{
+        alert('URL inválida! entre com uma URL de imagem válida')
+    }
+    return false;
+}
+
 
 function porcentagemAcerto(elemento){
     const porcentagem = Number(elemento.querySelector('.porcentagemNivel').value);
@@ -512,4 +524,17 @@ function descricaoNivel(elemento){
         return true;
     }
     return false;
+}
+
+function validaNivel(elemento){
+    if(validaTituloNivel(elemento) && validaImgNivel(elemento)
+    && porcentagemAcerto(elemento) && descricaoNivel(elemento)){
+        console.log(nivel);
+        return true;
+    }
+    else{
+        resetaNivel();
+        console.log(nivel);
+        return false;
+    }
 }
