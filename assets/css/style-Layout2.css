@@ -245,15 +245,31 @@
     color: #FF4B4B;
 }
 
-@media (max-width: 780px) {
-    .perguntaLayout2 {
-        width: 500px;;
+@media (max-width: 800px) {
+    /* topo */
 
+    .questionamento-quiz {
+        height: 160px;
+    }
+
+    .questionamento-quiz>p {
+        height: 160px;
+    
+        font-size: 29px;
+        line-height: 25px;
+    }
+
+    /* pergunta */
+
+    .perguntaLayout2 {
+        width: 500px;
     }
 
     .conteudo {
         width: 100%;
     }
+
+    /* cada alternativa */
 
     .alternativa {
         width: 200px;
@@ -263,7 +279,6 @@
     .alternativa>p {
         height: 28px;
     
-        font-weight: 700;
         font-size: 18px;
         line-height: 15px;
     }
@@ -274,36 +289,144 @@
         font-size: 23px;
         margin-left: 41px;
     }
+
+     /* acertos */
+
+    .conteudo-acertos {
+        width: 500px;
+        height: 500px;
+    }
+
+    .porcentagem {
+        width: 449px;
+
+        font-size: 23px;
+    }
+
+    .acertoImg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .acertoImg>img {
+        width: 340px;
+        height: 255px;
+        margin-bottom: 9px;
+    }
+
+    .acertoImg>p {
+        width: 328px;
+        height: 250px;
+    
+        font-size: 17px;
+        line-height: 20px;
+    }
 }
 
 @media (max-width: 500px) {
-    .perguntaLayout2 {
-        width: 375px;;
+    /* topo */
 
+    .questionamento-quiz {
+        height: 142px;
+    }
+
+    .questionamento-quiz>p {
+        height: 142px;
+    
+        font-size: 19px;
+        line-height: 22px;
+    }
+
+    /* pergunta */
+
+    .perguntaLayout2 {
+        width: 375px;
     }
 
     .conteudo {
         width: 100%;
     }
 
+    /* cada alternativa */
+
     .alternativa {
         width: 163px;
         height: 140px;
+
+        margin: 10px 10px;
     }
 
     .alternativa>p {
         height: 22px;
-    
-        font-weight: 700;
+
         font-size: 13px;
         line-height: 15px;
     }
 
+    .alternativa>img {
+        width: 100%;
+        height: 113px;
+    }
+
     .pergunta {
         width: 92%;
+        height: 89px;
         
         font-size: 19px;
         line-height: 22px;
         margin-left: 15px;
+    }
+
+    /* acertos */
+
+    .conteudo-acertos {
+        width: 375px;
+        height: 500px;
+    }
+
+    .porcentagem {
+        width: 340px;
+
+        font-size: 19px;
+        line-height: 22px;
+    }
+
+    .acertoImg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .acertoImg>img {
+        width: 340px;
+        height: 255px;
+        margin-bottom: 9px;
+    }
+
+    .acertoImg>p {
+        width: 328px;
+        height: 96px;
+    
+        font-size: 17px;
+        line-height: 20px;
+    }
+
+    /* botões  */
+
+    .reiniciar-quizz {
+        width: 220.32px;
+        height: 44px;
+        margin-top: 34px;
+    
+        font-size: 18px;
+        line-height: 21px;
+    }
+    
+    .voltar-home {
+        margin-top: 8px;
+    
+        font-size: 18px;
+        line-height: 21px;
     }
 }

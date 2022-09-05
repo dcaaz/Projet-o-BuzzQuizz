@@ -175,3 +175,33 @@
     color: #FFFFFF;
 
 }
+
+@media (max-width: 1300px) {
+
+    .seusQuizzesVazio {
+        width: 700px;
+    }
+
+    .outrosQuizzes {
+        width: 700px;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    .seusQuizzesVazio {
+        width: 340px;
+        margin-top: 44px;
+    }
+    
+    .seusQuizzesVazio > button {
+        margin-top: 15px;
+    }
+
+    .outrosQuizzes {
+        width: 340px;
+        margin-top: 35px;
+    }
+
+}
