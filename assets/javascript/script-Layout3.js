@@ -10,7 +10,7 @@ let mudarSecao = false;
 //Quantidade de perguntas passados pelo usuário
 let numPerguntas = 0;
 
-let numNiveis = 2;
+let numNiveis = 0;
 
 // objeto resposta
 /*let resposta = {
@@ -59,12 +59,7 @@ let quizzNovo ={
         ],
         //nível (nota) de acertos
         levels:[
-            {
-                title: '',
-                image: '',
-                text: '',
-                minValue: 0
-            }
+      
         ]
     };
 
@@ -470,7 +465,7 @@ function renderizaNiveis(){
     `;
 }
 
-renderizaNiveis();
+//renderizaNiveis();
 
 function validaTituloNivel(elemento){
     
@@ -529,12 +524,44 @@ function descricaoNivel(elemento){
 function validaNivel(elemento){
     if(validaTituloNivel(elemento) && validaImgNivel(elemento)
     && porcentagemAcerto(elemento) && descricaoNivel(elemento)){
-        console.log(nivel);
+    //    console.log(nivel);
         return true;
     }
     else{
         resetaNivel();
-        console.log(nivel);
+   //     console.log(nivel);
         return false;
     }
+}
+
+function checaNiveis(){
+    // enquanto não checar cada card de perguntas...
+    let zeroPorcento = 0;
+
+    for(let i = 0; i < numNiveis; i++){
+        let nivelASerChecado = document.querySelector(`.nivel${i}`);
+        if(validaNivel(nivelASerChecado)){
+        //    console.log(nivel);
+            if(nivel.minValue === 0){
+                zeroPorcento++;
+            }
+            quizzNovo.levels.push(nivel);
+            resetaNivel();
+        }
+        else{
+            resetaNivel();
+            quizzNovo.levels = [];
+        //    console.log(quizzNovo.levels);
+            return false;
+        }
+    }
+    if(zeroPorcento !== 1){
+        alert('Favor checar as porcentagens!')
+    //    console.log(quizzNovo.levels);
+        return false;
+    }
+    
+   // console.log(quizzNovo.levels);
+   console.log('FIM DA CRIACAO DO QUIZZ!!!! TOMA TEU OBJETO: ', quizzNovo);
+    return true;
 }
