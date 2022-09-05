@@ -95,7 +95,10 @@ input::placeholder{
     
     position: relative;
 }
-
+.image-container img{
+    aspect-ratio: 16/9;
+    width: 500px;
+}
 .image-container p{
     font-weight: 500;
     color: #fff;

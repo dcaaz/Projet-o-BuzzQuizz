@@ -4,6 +4,9 @@
 //array de teste de criação;
 let quizzTeste =[];
 
+let meusQuizzes = [];
+let idQuizz;
+
 //só mudo de secao se as condições forem satisfeitas.
 let mudarSecao = false;
 
@@ -33,6 +36,19 @@ let nivel = {
     minValue: 0
 }
 
+let quizzNovo ={
+    title:'',
+    image:'',
+    // perguntas
+    questions:[
+
+    ],
+    //nível (nota) de acertos
+    levels:[
+  
+    ]
+};
+
 function resetaPergunta(){
     pergunta = {
         title:'',
@@ -50,7 +66,8 @@ function resetaNivel(){
     }
 }
 
-let quizzNovo ={
+function resetaQuizz(){
+     quizzNovo ={
         title:'',
         image:'',
         // perguntas
@@ -62,7 +79,7 @@ let quizzNovo ={
       
         ]
     };
-
+}
 
 
 //----------------------------- funcoes genericas -------------------------------------
@@ -329,20 +346,6 @@ function renderizaPerguntas(){
 }
 
 
-
-/*function perguntaQuizz(elemento){
-   if(validaPergunta(elemento)){
-        if(checaCorFundo(elemento)){
-            if(checaValidadeResposta(elemento)){
-                if(pergunta.answers.length >= 2){ testando em outra funcao
-                    return true;
-                }
-            }
-        }
-    }
-}*/
-
-
 function validaRespostas(elemento){
     const divResposta = elemento.querySelector('.card-content');
     console.log('card-content:',divResposta);
@@ -397,20 +400,23 @@ function checaPerguntas(){
         let classePergunta = document.querySelector(`.pergunta${i}`);
         if(validaPergunta(classePergunta)){
             if(!validaRespostas(classePergunta)){
+
                 quizzNovo.questions = [];
                 resetaPergunta();
                 return false;
             }
             else{
+
                 quizzNovo.questions.push(pergunta);
                 resetaPergunta();
             }
         }else{
+            
+            quizzNovo.questions = [];
+            resetaPergunta();
             return false;
         }
     }
-    console.log('perguntas', pergunta);
-    console.log("quizz info:", quizzNovo);
 
     return true;
 }
@@ -461,7 +467,7 @@ function renderizaNiveis(){
 
     secaoNiveis.innerHTML += `
     <button onclick="mudaSecao('.nivel-quizz','.finalizou-quizz',
-    checaNiveis,renderizaFinal)">
+    checaNiveis,renderizaFinalizaQuizz)">
     Finalizar Quizz</button>
     `;
 }
@@ -514,6 +520,7 @@ function descricaoNivel(elemento){
         alert('Parametros inválidos para a descricao do Nível!');
     }
     else{
+
         nivel.text = descricao.value;
         return true;
     }
@@ -523,12 +530,12 @@ function descricaoNivel(elemento){
 function validaNivel(elemento){
     if(validaTituloNivel(elemento) && validaImgNivel(elemento)
     && porcentagemAcerto(elemento) && descricaoNivel(elemento)){
-    //    console.log(nivel);
+
         return true;
     }
     else{
+
         resetaNivel();
-   //     console.log(nivel);
         return false;
     }
 }
@@ -539,29 +546,32 @@ function checaNiveis(){
 
     for(let i = 0; i < numNiveis; i++){
         let nivelASerChecado = document.querySelector(`.nivel${i}`);
+
         if(validaNivel(nivelASerChecado)){
-        //    console.log(nivel);
+
             if(nivel.minValue === 0){
                 zeroPorcento++;
             }
+
             quizzNovo.levels.push(nivel);
             resetaNivel();
         }
         else{
+
             resetaNivel();
             quizzNovo.levels = [];
-        //    console.log(quizzNovo.levels);
             return false;
         }
     }
+
     if(zeroPorcento !== 1){
+
         alert('Favor checar as porcentagens!')
-    //    console.log(quizzNovo.levels);
+        quizzNovo.levels = [];
         return false;
     }
     
-   // console.log(quizzNovo.levels);
-   console.log('FIM DA CRIACAO DO QUIZZ!!!! TOMA TEU OBJETO: ', quizzNovo);
+    console.log('FIM DA CRIACAO DO QUIZZ!!!! TOMA TEU OBJETO: ', quizzNovo);
     return true;
 }
 
@@ -569,22 +579,55 @@ function checaNiveis(){
 //-----------------------------------------------------------------------------------------
 // ----------------------------- inicio da secao finalizou-quizz --------------------------
 
-function renderizaFinal(){
-    const secaoFinaliza = document.querySelector('.finalizou-quizz');
+function renderizaFinalizaQuizz(){
+    const secaoFinal = document.querySelector('.finalizou-quizz');
+    const nomeDoQuizz = quizzNovo.title;
+    const img = quizzNovo.image;
 
-    secaoFinaliza.innerHTML = `
+    secaoFinal.innerHTML = `
         <div class="titulo">
             <h1>Seu quizz está pronto!</h1>
         </div>
 
         <div class="image-container">
-            <img src="./assets/image/download.jpeg">
-            <p>Nome do seu Quizz</p>
+            <img src="${img}">
+            <p>${nomeDoQuizz}</p>
         </div>
 
-        <button onclick="retornarAoLayoutTresParaUm()" >Acessar Quizz</button>
+        <button onclick="acessaQuizz()" >Acessar Quizz</button>
         <h2 onclick="retornarAoLayoutTresParaUm()">Voltar ao Início</h2>
     `;
-
+    enviaQuizz();
 
 }
+
+function enviaQuizz(){
+    const finalizado = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes',quizzNovo);
+    finalizado.then(salvaQuizz);
+    finalizado.catch(erroQuizz);
+
+    console.log('finalizado:',finalizado);
+}
+
+function salvaQuizz(quizz){
+    console.log('quizz:',quizz);
+    idQuizz = quizz.data.id;
+    tituloQuizz = quizz.data.title;
+    localStorage.setItem(tituloQuizz, idQuizz);
+    meusQuizzes.push(idQuizz);
+    resetaQuizz();
+}
+
+function erroQuizz(erro){
+    const errNum = erro.response.status;
+    window.location.assign(`https://httpstatusdogs.com/${errNum}.jpg`);
+    alert('Não foi possível enviar o quizz!');
+}
+
+
+function acessaQuizz(){
+    //localStorage.getItem(idQuizz);
+    const acessar = axios.get(`https://mock-api.driven.com.br/
+    api/v4/buzzquizz/quizzes/${idQuizz}`);
+}
+
