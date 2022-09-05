@@ -8,17 +8,17 @@ let quizzTeste =[];
 let mudarSecao = false;
 
 //Quantidade de perguntas passados pelo usuário
-let numPerguntas = 5;
+let numPerguntas = 0;
 
-let numNiveis;
+let numNiveis = 2;
 
 // objeto resposta
-let resposta = {
+/*let resposta = {
     text: '',
     image: '',
     isCorrectAnswer: true
 };
-
+*/
 // objeto pergunta 
 let pergunta = {
     title:'',
@@ -26,30 +26,36 @@ let pergunta = {
     answers:[]
 }
 
+let nivel = {
+    title: '',
+    image: '',
+    text: '',
+    minValue: 0
+}
 
+function resetaPergunta(){
+    pergunta = {
+        title:'',
+        color:'',
+        answers:[]
+    }
+}
+
+function resetaNivel(){
+    nivel = {
+        title: '',
+        image: '',
+        text: '',
+        minValue: 0
+    }
+}
 
 let quizzNovo ={
         title:'',
         image:'',
         // perguntas
         questions:[
-            {
-                title:'',
-                color:'',
-                answers:[
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: '',
-                        image: '',
-                        isCorrectAnswer: false
-                    },
-
-                ]
-            }
+    
         ],
         //nível (nota) de acertos
         levels:[
@@ -58,12 +64,6 @@ let quizzNovo ={
                 image: '',
                 text: '',
                 minValue: 0
-            },
-            {
-                title: '',
-                image: '',
-                text: '',
-                minValue: 50
             }
         ]
     };
@@ -90,7 +90,7 @@ function mostraConteudo(elemento){
 
 }
 
-function mudaSecao(elemento, proximo, funcao){
+function mudaSecao(elemento, proximo, funcao, funcao2){
     
     mudarSecao = funcao();
 
@@ -100,9 +100,10 @@ function mudaSecao(elemento, proximo, funcao){
 
         secaoAtual.classList.add('esconde');
         proximaSecao.classList.remove('esconde');
+        mudarSecao = false;
+        funcao2();
     }
 
-    mudarSecao = false;
 }
 
 
@@ -154,8 +155,8 @@ function validaQtdPerguntas(){
 
     //console.log(qtdPergunta);
 
-    //    não NaN?                    inteiro?           maior que 3?
-    if( !isNaN(qtdPergunta) && qtdPergunta % 1 === 0 && qtdPergunta > 3){
+    //    não NaN?                    inteiro?           maior que 2?
+    if( !isNaN(qtdPergunta) && qtdPergunta % 1 === 0 && qtdPergunta >= 3){
         numPerguntas = qtdPergunta;
         return true;
     }
@@ -168,8 +169,8 @@ function validaQtdNiveis(){
     const elemento = document.querySelector('.qtdNiveisQuizzNovo');
     const qtdNiveis = Number(elemento.value);
     
-    //    não NaN?                     inteiro?           maior que 3?
-    if( !isNaN(qtdNiveis) && qtdNiveis % 1 === 0 && qtdNiveis > 2){
+    //    não NaN?                     inteiro?           maior que 1?
+    if( !isNaN(qtdNiveis) && qtdNiveis % 1 === 0 && qtdNiveis >= 2){
         numNiveis = qtdNiveis;
         return true;
     }
@@ -180,6 +181,7 @@ function validaQtdNiveis(){
 
 function nomeQuizz(){
     if(validaTitulo() && validaImg() && validaQtdPerguntas() && validaQtdNiveis()){
+        console.log('Status quizz-novo', quizzNovo);
         return true;
     }
 }
@@ -190,24 +192,23 @@ function nomeQuizz(){
 
 function validaPergunta(elemento){
     
-    const elementoSelecionado = document.querySelector(elemento);
+    //const elementoSelecionado = document.querySelector(elemento);
 
-    const texto = elementoSelecionado.querySelector('.textoPergunta');
+    const texto = elemento.querySelector('.textoPergunta');
 
-    if(texto.value.length < 20){
-        alert('Quantidade invalida de caracteres para a pergunta! mínimo de 20 caracteres');
+    if(texto.value.length < 20 || !checaCorFundo(elemento)){
+        alert('Parametros inválidos para a pergunta!');
     }
     else{
         pergunta.title = texto.value;
-        console.log(pergunta.title);
         return true;
     }
 }
 
 function checaCorFundo(elemento){
 
-    const elementoSelecionado = document.querySelector(elemento);
-    const corFundo = elementoSelecionado.querySelector('.corFundoPergunta');
+ //   const elementoSelecionado = document.querySelector(elemento);
+    const corFundo = elemento.querySelector('.corFundoPergunta');
     const stringCor = corFundo.value;
     //teste por expressão regular (se começa por #, e os demais caracteres são de 0 a A e são no total 6);
     const testaHexa = /^#([A-Fa-f0-9]{6})/; 
@@ -215,30 +216,43 @@ function checaCorFundo(elemento){
     if(testaHexa.test(stringCor)){
         console.log("Cor Válida!");
         pergunta.color = stringCor;
+        return true;
     }else{
-        alert("Cor Inválida!");
+        return false;
+        //alert("Cor Inválida!");
     }
 
 }
 
+
+
+
+//passar classe bloco-resposta
+
 function checaValidadeResposta(elemento){
-    const elementoSelecionado = document.querySelector(elemento);
-    const texto = elementoSelecionado.querySelector('.textoResposta');
+    //elemento a ser devolvido
+    let resposta = {
+        text: '',
+        image: '',
+        isCorrectAnswer: true
+    };
 
-    const img = elementoSelecionado.querySelector('.imgResposta');
-    const testaImagem = img.value;
-    const textoResposta = texto.value;
+    const texto = elemento.querySelector('.textoResposta').value;
+    const img = elemento.querySelector('.imgResposta').value;
 
 
-    if(textoResposta === ''){
-        alert('Entre com um texto para resposta!');
-        
-    } else if(!(ehImagem(testaImagem))){
-        alert('URL inválida! entre com uma URL de imagem válida para resposta')
-    }else{
-        resposta.text = textoResposta; 
-        resposta.image = testaImagem;
-        return true;
+    if(texto === '' || !(ehImagem(img))){
+        //alert('Resposta Inválida!');
+        return false;
+    } else {
+        resposta.text = texto; 
+        resposta.image = img;
+        if(elemento.classList.contains('correta')){
+            resposta.isCorrectAnswer = true;
+        }else{
+            resposta.isCorrectAnswer = false;
+        }
+        return resposta;
     }
 
 }
@@ -282,24 +296,24 @@ function renderizaPerguntas(){
 
                     <p>Resposta correta</p>
 
-                    <div class="bloco-resposta">
-                        <input type="text" placeholder="Resposta correta" class="textoResposta correta">
+                    <div class="bloco-resposta correta">
+                        <input type="text" placeholder="Resposta correta" class="textoResposta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
                     <p>Respostas incorretas</p>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta0">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta1">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
 
-                    <div class="bloco-resposta">
+                    <div class="bloco-resposta incorreta2">
                         <input type="text" placeholder="Resposta incorreta" class="textoResposta incorreta">
                         <input type="text" placeholder="URL da imagem" class="imgResposta">
                     </div>
@@ -313,22 +327,214 @@ function renderizaPerguntas(){
 
     secaoPerguntas.innerHTML += `
                 <button onclick="mudaSecao('.perguntas-quizz',
-                '.nivel-quizz',perguntaQuizz('.pergunta1'))">
+                '.nivel-quizz',checaPerguntas,renderizaNiveis)">
                 Prosseguir para criar níveis</button>
                 `;
 
 }
 
-renderizaPerguntas();
 
-function perguntaQuizz(elemento){
-    validaPergunta(elemento);
-    checaCorFundo(elemento);
-    checaValidadeResposta(elemento);
-    //validaRespostas(); //qtde >=2  e possui 1 certa
-    //validaImgResposta();
+
+/*function perguntaQuizz(elemento){
+   if(validaPergunta(elemento)){
+        if(checaCorFundo(elemento)){
+            if(checaValidadeResposta(elemento)){
+                if(pergunta.answers.length >= 2){ testando em outra funcao
+                    return true;
+                }
+            }
+        }
+    }
+}*/
+
+
+function validaRespostas(elemento){
+    const divResposta = elemento.querySelector('.card-content');
+    console.log('card-content:',divResposta);
+
+    let correta = divResposta.querySelector('.correta');
+    console.log('resposta correta',correta);
+
+    let respostas = [];
+
+    respostas.push(checaValidadeResposta(correta));
+
+    for(let i = 0; i < 3; i++){
+        let incorreta = divResposta.querySelector(`.incorreta${i}`);
+        console.log('resposta incorreta', incorreta);
+        respostas.push(checaValidadeResposta(incorreta));
+    }
+
+    
+    console.log('respostas:',respostas);
+    
+    if(respostas.length < 2 || respostas[0] === false){
+        alert('Por favor, preencha as respostas de maneira correta!');
+        respostas = [];
+        return false;
+        
+    } else{
+        for(let i = 0; i < 4; i++){
+            if(respostas[i]){
+                // a resposta certa deve ser diferente das erradas!
+                if(i !== 0 && respostas[i].text === respostas[0].text){
+                    alert('Por favor, preencha as respostas de maneira correta!');
+                    respostas = [];
+                    return false;
+                }
+                pergunta.answers.push(respostas[i]);
+            }
+        }
+        console.log('Salvo nas perguntas',pergunta.answers)
+        respostas = [];
+        console.log('respostas:',respostas);
+        return true;
+    }
+
+    
 }
+
 
 function checaPerguntas(){
     // enquanto não checar cada card de perguntas...
+    for(let i = 0; i < numPerguntas; i++){
+        
+        let classePergunta = document.querySelector(`.pergunta${i}`);
+        if(validaPergunta(classePergunta)){
+            if(!validaRespostas(classePergunta)){
+                resetaPergunta();
+                return false;
+            }
+            else{
+                quizzNovo.questions.push(pergunta);
+                resetaPergunta();
+            }
+        }else{
+            return false;
+        }
+    }
+    console.log('perguntas', pergunta);
+    console.log("quizz info:", quizzNovo);
+
+    return true;
+}
+
+// ----------------------------- fim da secao perguntas --------------------------
+//--------------------------------------------------------------------------------
+// ----------------------------- inicio da secao niveis --------------------------
+
+function renderizaNiveis(){
+    const secaoNiveis = document.querySelector('.nivel-quizz');
+    //min 2 niveis
+
+    secaoNiveis.innerHTML = `
+         <div class="titulo">
+            <h1>Agora, decida os níveis</h1>
+        </div>
+    `;
+
+    for(let i = 0; i < numNiveis; i++){
+        let esconder = '';
+        let botaoEditar = '';
+
+        if (i>0){
+            esconder = 'esconde';
+            botaoEditar = `<ion-icon name="create-outline" 
+            onclick="mostraConteudo(this)"></ion-icon>
+            `;
+        }
+
+        secaoNiveis.innerHTML += `
+            <div class="card nivel${i}">
+                <div class="qtd-card">
+                    <p>Nível ${1+i}</p>
+                    ${botaoEditar}
+                </div>
+
+                <div class="card-content ${esconder}">
+
+                    <input type="text" placeholder="Título do nível" class="tituloNivel">
+                    <input type="text" placeholder="% de acerto mínima" class="porcentagemNivel">
+                    <input type="text" placeholder="URL da imagem do nível" class="imgNivel">
+                    <input type="text" placeholder="Descrição do nível" class="textoNivel">
+
+                </div>
+            </div>
+            `;
+    }
+
+    secaoNiveis.innerHTML += `
+    <button onclick="mudaSecao('.nivel-quizz','.finalizou-quizz',
+    checaNiveis,renderizaFinal)">
+    Finalizar Quizz</button>
+    `;
+}
+
+renderizaNiveis();
+
+function validaTituloNivel(elemento){
+    
+    const titulo = elemento.querySelector('.tituloNivel');
+
+    if(titulo.value.length < 10){
+        alert('Parametros inválidos para o título do Nível!');
+    }
+    else{
+        nivel.title = titulo.value;
+        return true;
+    }
+    return false;
+}
+
+
+function validaImgNivel(elemento){
+    const img = elemento.querySelector('.imgNivel');
+    const testaImagem = img.value;
+    if(ehImagem(testaImagem)){
+        nivel.image = testaImagem;
+        return true;
+    }else{
+        alert('URL inválida! entre com uma URL de imagem válida')
+    }
+    return false;
+}
+
+
+function porcentagemAcerto(elemento){
+    const porcentagem = Number(elemento.querySelector('.porcentagemNivel').value);
+
+    if(isNaN(porcentagem) || porcentagem < 0 || porcentagem > 100){
+        alert('Parametros inválidos para a porcentagem!');
+        return false;
+    }
+    else{
+        nivel.minValue = porcentagem;
+        return true;
+    }
+}
+
+function descricaoNivel(elemento){
+    const descricao = elemento.querySelector('.textoNivel');
+
+    if(descricao.value.length < 30){
+        alert('Parametros inválidos para a descricao do Nível!');
+    }
+    else{
+        nivel.text = descricao.value;
+        return true;
+    }
+    return false;
+}
+
+function validaNivel(elemento){
+    if(validaTituloNivel(elemento) && validaImgNivel(elemento)
+    && porcentagemAcerto(elemento) && descricaoNivel(elemento)){
+        console.log(nivel);
+        return true;
+    }
+    else{
+        resetaNivel();
+        console.log(nivel);
+        return false;
+    }
 }
