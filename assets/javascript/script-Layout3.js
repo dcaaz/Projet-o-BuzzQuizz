@@ -397,6 +397,7 @@ function checaPerguntas(){
         let classePergunta = document.querySelector(`.pergunta${i}`);
         if(validaPergunta(classePergunta)){
             if(!validaRespostas(classePergunta)){
+                quizzNovo.questions = [];
                 resetaPergunta();
                 return false;
             }
@@ -464,8 +465,6 @@ function renderizaNiveis(){
     Finalizar Quizz</button>
     `;
 }
-
-//renderizaNiveis();
 
 function validaTituloNivel(elemento){
     
@@ -564,4 +563,28 @@ function checaNiveis(){
    // console.log(quizzNovo.levels);
    console.log('FIM DA CRIACAO DO QUIZZ!!!! TOMA TEU OBJETO: ', quizzNovo);
     return true;
+}
+
+// ---------------------------------- fim da secao niveis ---------------------------------
+//-----------------------------------------------------------------------------------------
+// ----------------------------- inicio da secao finalizou-quizz --------------------------
+
+function renderizaFinal(){
+    const secaoFinaliza = document.querySelector('.finalizou-quizz');
+
+    secaoFinaliza.innerHTML = `
+        <div class="titulo">
+            <h1>Seu quizz está pronto!</h1>
+        </div>
+
+        <div class="image-container">
+            <img src="./assets/image/download.jpeg">
+            <p>Nome do seu Quizz</p>
+        </div>
+
+        <button onclick="retornarAoLayoutTresParaUm()" >Acessar Quizz</button>
+        <h2 onclick="retornarAoLayoutTresParaUm()">Voltar ao Início</h2>
+    `;
+
+
 }
