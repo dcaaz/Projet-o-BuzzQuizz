@@ -3,6 +3,7 @@
 
 //array de teste de criação;
 let quizzTeste =[];
+let quizzAtual;
 
 let meusQuizzes = [];
 let idQuizz;
@@ -613,8 +614,13 @@ function salvaQuizz(quizz){
     console.log('quizz:',quizz);
     idQuizz = quizz.data.id;
     tituloQuizz = quizz.data.title;
+
+
     localStorage.setItem(tituloQuizz, idQuizz);
-    meusQuizzes.push(idQuizz);
+    meusQuizzes.push(tituloQuizz);
+    
+    quizzAtual = quizzNovo;
+    guardaQuizzesUsuario();
     resetaQuizz();
 }
 
@@ -626,8 +632,15 @@ function erroQuizz(erro){
 
 
 function acessaQuizz(){
-    //localStorage.getItem(idQuizz);
-    const acessar = axios.get(`https://mock-api.driven.com.br/
-    api/v4/buzzquizz/quizzes/${idQuizz}`);
+    renderizarQuizz(quizzAtual);
 }
 
+function guardaQuizzesUsuario(){
+    const listaQuizzesUser = JSON.stringify(meusQuizzes);
+    localStorage.setItem('lista', listaQuizzesUser); 
+}
+
+function buscaQuizzesUsuario(){
+    const quizzesUsuario = localStorage.getItem('lista');
+    return JSON.parse(quizzesUsuario);
+}
